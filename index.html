@@ -2,8 +2,12 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Natore SRC - Accountant Interview Q&A (100 Questions)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#ec008c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Natore SRC QA">
+    <title>Natore SRC - Accountant Q&A PWA (200 Questions)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,170 +15,205 @@
         :root {
             --primary: #ec008c;
             --primary-dark: #c40074;
-            --secondary: #1e293b;
-            --bg: #f8fafc;
+            --secondary: #0f172a;
+            --bg: #f1f5f9;
             --card-bg: #ffffff;
             --text: #334155;
             --border: #e2e8f0;
+            --success: #10b981;
         }
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
         body {
             font-family: 'Hind Siliguri', sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            line-height: 1.6;
+            line-height: 1.55;
+            padding-bottom: 75px;
         }
         header {
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: #ffffff;
-            padding: 2.5rem 1rem;
+            padding: 1.25rem 1rem 1.4rem;
             text-align: center;
-            border-bottom: 4px solid var(--primary);
+            border-bottom: 3px solid var(--primary);
+            position: relative;
+        }
+        header .badge {
+            display: inline-block;
+            background: rgba(236, 0, 140, 0.2);
+            color: #ff7ac6;
+            border: 1px solid rgba(236, 0, 140, 0.4);
+            font-size: 0.75rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 999px;
+            margin-bottom: 0.35rem;
+            font-weight: 600;
         }
         header h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.35rem;
             font-weight: 700;
+            line-height: 1.3;
         }
         header p {
             color: #cbd5e1;
-            font-size: 1.1rem;
+            font-size: 0.88rem;
+            margin-top: 0.25rem;
+        }
+        .install-banner {
+            display: none;
+            background: #fdf2f8;
+            border-bottom: 1px solid #fbcfe8;
+            padding: 0.6rem 1rem;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #831843;
+        }
+        .install-banner.show {
+            display: flex;
         }
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 1.5rem 1rem 4rem;
+            padding: 0.85rem;
         }
-        .controls {
-            background: var(--card-bg);
-            padding: 1.25rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            margin-bottom: 1.5rem;
+        .sticky-top {
             position: sticky;
-            top: 10px;
-            z-index: 100;
-            border: 1px solid var(--border);
+            top: 0;
+            z-index: 90;
+            background: var(--bg);
+            padding: 0.5rem 0 0.65rem;
         }
-        .search-row {
+        .search-box {
             display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
+            gap: 0.5rem;
+            margin-bottom: 0.65rem;
         }
         input[type="text"] {
             flex: 1;
-            min-width: 240px;
-            padding: 0.7rem 1rem;
+            padding: 0.65rem 0.9rem;
             border: 1px solid #cbd5e1;
-            border-radius: 8px;
+            border-radius: 10px;
             font-family: inherit;
-            font-size: 1rem;
+            font-size: 0.95rem;
+            background: #fff;
             outline: none;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
         }
         input[type="text"]:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(236, 0, 140, 0.15);
         }
         .btn {
-            padding: 0.65rem 1rem;
+            padding: 0.55rem 0.85rem;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-family: inherit;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            white-space: nowrap;
         }
         .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
+            background: var(--primary);
+            color: #fff;
         }
         .btn-outline {
-            background-color: #f1f5f9;
+            background: #fff;
             color: var(--secondary);
             border: 1px solid #cbd5e1;
         }
-        .btn-outline:hover {
-            background-color: #e2e8f0;
-        }
         .categories {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.45rem;
             overflow-x: auto;
-            padding-bottom: 0.25rem;
+            scrollbar-width: none;
+            padding-bottom: 0.2rem;
+        }
+        .categories::-webkit-scrollbar {
+            display: none;
         }
         .cat-pill {
             white-space: nowrap;
-            padding: 0.4rem 0.85rem;
+            padding: 0.35rem 0.75rem;
             border-radius: 999px;
-            font-size: 0.88rem;
+            font-size: 0.82rem;
             font-weight: 600;
-            background: #f1f5f9;
+            background: #ffffff;
             color: #475569;
-            border: 1px solid transparent;
+            border: 1px solid #e2e8f0;
             cursor: pointer;
-            transition: 0.2s;
         }
-        .cat-pill.active, .cat-pill:hover {
+        .cat-pill.active {
             background: var(--primary);
             color: #ffffff;
+            border-color: var(--primary);
         }
-        .stats {
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.82rem;
             color: #64748b;
-            font-weight: 500;
+            margin-bottom: 0.65rem;
+            padding: 0 0.2rem;
         }
         .qa-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            padding: 1.25rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-            transition: transform 0.15s ease;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            padding: 1rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
         }
-        .qa-card:hover {
-            border-color: #cbd5e1;
+        .qa-card.bookmarked {
+            border-left: 4px solid #f59e0b;
+        }
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.4rem;
         }
         .qa-meta {
-            display: inline-block;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             color: var(--primary);
             background: rgba(236, 0, 140, 0.08);
-            padding: 0.2rem 0.6rem;
+            padding: 0.15rem 0.55rem;
             border-radius: 6px;
-            margin-bottom: 0.5rem;
+        }
+        .bookmark-btn {
+            background: none;
+            border: none;
+            font-size: 1.15rem;
+            cursor: pointer;
+            color: #94a3b8;
+            padding: 0.1rem 0.3rem;
+        }
+        .bookmark-btn.active {
+            color: #f59e0b;
         }
         .question {
-            font-size: 1.12rem;
+            font-size: 1.02rem;
             font-weight: 700;
             color: var(--secondary);
-            margin-bottom: 0.6rem;
             cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 1rem;
+            margin-bottom: 0.5rem;
         }
         .q-label {
             color: var(--primary);
-            margin-right: 0.35rem;
         }
         .answer {
-            font-size: 1.02rem;
+            font-size: 0.95rem;
             color: #334155;
             background: #f8fafc;
-            padding: 0.85rem 1rem;
+            padding: 0.75rem 0.85rem;
             border-radius: 8px;
             border-left: 3px solid var(--primary);
         }
@@ -184,52 +223,100 @@
         .a-label {
             font-weight: 700;
             color: #0f172a;
-            margin-right: 0.35rem;
         }
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            color: #64748b;
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border);
+        /* Mobile Bottom Nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
             background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.45rem 0;
+            z-index: 100;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+        .nav-item {
+            background: none;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: inherit;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            padding: 0.2rem 0.6rem;
+        }
+        .nav-item.active {
+            color: var(--primary);
+        }
+        .nav-icon {
+            font-size: 1.15rem;
+            margin-bottom: 0.1rem;
         }
         @media print {
-            .controls, footer { display: none; }
+            .sticky-top, .bottom-nav, .install-banner, .bookmark-btn { display: none !important; }
             .answer.hidden { display: block !important; }
-            body { background: #fff; }
+            body { background: #fff; padding-bottom: 0; }
             .qa-card { break-inside: avoid; border: 1px solid #ccc; }
         }
     </style>
 </head>
 <body>
 
+<div class="install-banner" id="installBanner">
+    <span>📱 অ্যাপ হিসেবে মোবাইলে ইনস্টল করুন (Offline Ready)</span>
+    <button class="btn btn-primary" id="installBtn" style="padding:0.35rem 0.75rem; font-size:0.8rem;">Install App</button>
+</div>
+
 <header>
-    <h1>BRAC Sericulture Program - Natore SRC</h1>
-    <p>Accountant Recruitment Interview Q&A Bank (BBA / MBA Candidates — 100 Questions & Answers)</p>
+    <div class="badge">PWA Offline Ready • 200 Q&A</div>
+    <h1>BRAC Sericulture - Natore SRC</h1>
+    <p>Accountant Recruitment Question & Answer Bank (BBA / MBA)</p>
 </header>
 
 <div class="container">
-    <div class="controls">
-        <div class="search-row">
-            <input type="text" id="searchInput" placeholder="প্রশ্ন বা উত্তর খুঁজুন (যেমন: VAT, FIFO, R&E, Excel, Depreciation)...">
-            <button class="btn btn-outline" id="toggleAllBtn">সব উত্তর লুকান (Viva Mode)</button>
-            <button class="btn btn-primary" onclick="window.print()">Print / PDF</button>
+    <div class="sticky-top">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="খুঁজুন: VAT, FIFO, R&E, Excel, 145...">
+            <button class="btn btn-outline" id="clearSearchBtn" style="display:none;">✕</button>
         </div>
         <div class="categories" id="categoryContainer"></div>
     </div>
 
-    <div class="stats" id="statsText">মোট ১০০টি প্রশ্ন দেখানো হচ্ছে</div>
+    <div class="status-bar">
+        <span id="statsText">মোট ২০০টি প্রশ্ন</span>
+        <span id="modeBadge">Answer: Visible</span>
+    </div>
+
     <div id="qaList"></div>
 </div>
 
-<footer>
-    Natore Sericulture Resource Centre (SRC) • Accountant Recruitment Question Bank
-</footer>
+<nav class="bottom-nav">
+    <button class="nav-item active" id="navAll" onclick="setFilterMode('all')">
+        <span class="nav-icon">📚</span>
+        <span>সব (200)</span>
+    </button>
+    <button class="nav-item" id="navViva" onclick="toggleVivaMode()">
+        <span class="nav-icon">👁️</span>
+        <span id="vivaLabel">Viva Mode</span>
+    </button>
+    <button class="nav-item" id="navSaved" onclick="setFilterMode('saved')">
+        <span class="nav-icon">⭐</span>
+        <span id="savedLabel">Saved (0)</span>
+    </button>
+    <button class="nav-item" onclick="window.print()">
+        <span class="nav-icon">🖨️</span>
+        <span>Print/PDF</span>
+    </button>
+</nav>
 
 <script>
 const qaData = [
-    // Category 1
     { id: 1, cat: "১. বেসিক অ্যাকাউন্টিং", q: "অ্যাকাউন্টিংয়ের গোল্ডেন রুলস (Golden Rules of Accounting) কী কী? উদাহরণসহ বলুন।", a: "(ক) Personal Account: গ্রহীতা ডেবিট, দাতা ক্রেডিট (যেমন: করিমকে টাকা দিলে করিম ডেবিট); (খ) Real Account: যা আসে ডেবিট, যা যায় ক্রেডিট (যেমন: আসবাবপত্র কিনলে আসবাবপত্র ডেবিট); (গ) Nominal Account: সকল ব্যয়/ক্ষতি ডেবিট, সকল আয়/লাভ ক্রেডিট (যেমন: বেতন দিলে বেতন ডেবিট)।" },
     { id: 2, cat: "১. বেসিক অ্যাকাউন্টিং", q: "Assets, Liabilities, Equity, Revenue এবং Expenses—এই ৫টি উপাদানের ডেবিট-ক্রেডিট নিয়ম কী?", a: "Assets ও Expenses বাড়লে ডেবিট, কমলে ক্রেডিট। Liabilities, Equity ও Revenue বাড়লে ক্রেডিট, কমলে ডেবিট।" },
     { id: 3, cat: "১. বেসিক অ্যাকাউন্টিং", q: "Cash Basis এবং Accrual Basis অ্যাকাউন্টিংয়ের মধ্যে পার্থক্য কী? কোনটি বেশি গ্রহণযোগ্য এবং কেন?", a: "Cash Basis-এ নগদ টাকা আদান-প্রদান হলে হিসাব লেখা হয়; Accrual Basis-এ লেনদেন সংঘটিত হওয়া মাত্রই (বকেয়া বা অগ্রিম হলেও) হিসাব লেখা হয়। Accrual Basis বেশি গ্রহণযোগ্য কারণ এটি প্রতিষ্ঠানের প্রকৃত আর্থিক চিত্র প্রকাশ করে।" },
@@ -242,8 +329,6 @@ const qaData = [
     { id: 10, cat: "১. বেসিক অ্যাকাউন্টিং", q: "Going Concern এবং Matching Principle বলতে কী বোঝায়?", a: "প্রতিষ্ঠান ভবিষ্যতে অনির্দিষ্টকাল ধরে চলবে এই ধারণা হলো Going Concern। আর নির্দিষ্ট হিসাবকালের আয়ের সাথে ওই সময়ের ব্যয় মিলিয়ে লাভ-ক্ষতি নির্ণয় করা হলো Matching Principle।" },
     { id: 11, cat: "১. বেসিক অ্যাকাউন্টিং", q: "Petty Cash (খুচরা নগদান) এবং Imprest System কী? কীভাবে এটি মেইনটেইন করা হয়?", a: "অফিসের দৈনন্দিন ছোটখাটো নগদ খরচের তহবিল হলো Petty Cash। নির্দিষ্ট পরিমাণ টাকা অগ্রিম দিয়ে মাস শেষে খরচের ভাউচার জমা নিয়ে সমপরিমাণ টাকা পূরণ করে তহবিল আগের অবস্থায় ফিরিয়ে আনার পদ্ধতিই Imprest System।" },
     { id: 12, cat: "১. বেসিক অ্যাকাউন্টিং", q: "Accounting Cycle-এর ধাপগুলো ধারাবাহিকভাবে বলুন।", a: "লেনদেন শনাক্তকরণ → জাবেদা (Journal) → খতিয়ান (Ledger) → রেওয়ামিল (Trial Balance) → সমন্বয় দাখিলা (Adjusting Entries) → আর্থিক বিবরণী (Financial Statements) → সমাপনী দাখিলা (Closing Entries)।" },
-
-    // Category 2
     { id: 13, cat: "২. ফাইন্যান্সিয়াল স্টেটমেন্ট", q: "Receipt & Expenditure (R&E) এবং Income & Expenditure (I&E) স্টেটমেন্টের মধ্যে মূল পার্থক্য কী?", a: "R&E স্টেটমেন্টে প্রারম্ভিক ও সমাপনী ক্যাশ/ব্যাংক জেরসহ সকল নগদ প্রাপ্তি ও প্রদান দেখানো হয়। I&E স্টেটমেন্টে শুধু নির্দিষ্ট সময়ের মুনাফা জাতীয় আয় ও ব্যয় (বকেয়া ও অবচয়সহ) দেখিয়ে লাভ-ক্ষতি বের করা হয়।" },
     { id: 14, cat: "২. ফাইন্যান্সিয়াল স্টেটমেন্ট", q: "Income Statement এবং Balance Sheet-এর মধ্যে মূল যোগসূত্র (Link) কী?", a: "Income Statement থেকে প্রাপ্ত Net Profit বা Surplus/Deficit ব্যালেন্স শিটের Equity বা Capital Fund-এর সাথে যোগ বা বিয়োগ হয়।" },
     { id: 15, cat: "২. ফাইন্যান্সিয়াল স্টেটমেন্ট", q: "Balance Sheet-এ Assets এবং Liabilities সবসময় সমান হয় কেন?", a: "অ্যাকাউন্টিং সমীকরণ (Assets = Liabilities + Equity) অনুযায়ী প্রতিষ্ঠানের প্রতিটি সম্পদের বিপরীতে মালিক বা তৃতীয় পক্ষের দাবি সমান থাকে বলে ব্যালেন্স শিট সবসময় মিলে যায়।" },
@@ -256,8 +341,6 @@ const qaData = [
     { id: 22, cat: "২. ফাইন্যান্সিয়াল স্টেটমেন্ট", q: "Head Office (HO) বা কেন্দ্রীয় অফিসের সাথে ব্রাঞ্চের লেনদেন (HO Breakup / Current Account) কীভাবে সমন্বয় করা হয়?", a: "ব্রাঞ্চ ও হেড অফিসের মধ্যকার ফান্ড ট্রান্সফার বা মালামাল আদান-প্রদানের হিসাব আলাদা লেজারে (HO Breakup) রেখে মাস শেষে উভয় অফিসের ডেবিট-ক্রেডিট মিলিয়ে সমন্বয় করা হয়।" },
     { id: 23, cat: "২. ফাইন্যান্সিয়াল স্টেটমেন্ট", q: "Working Capital (চলতি মূলধন) কী এবং কীভাবে হিসাব করা হয়?", a: "প্রতিষ্ঠানের দৈনন্দিন কার্যক্রম পরিচালনার জন্য প্রয়োজনীয় মূলধনকে Working Capital বলে। এর সূত্র: Working Capital = Current Assets - Current Liabilities।" },
     { id: 24, cat: "২. ফাইন্যান্সিয়াল স্টেটমেন্ট", q: "একটি প্রতিষ্ঠানের আর্থিক অবস্থা ভালো না খারাপ তা কোন কোন বিষয় দেখে বুঝবেন?", a: "পর্যাপ্ত নগদ প্রবাহ (Cash Flow), নিট লাভের হার, বাজেটের সাথে প্রকৃত খরচের সামঞ্জস্য, ইনভেন্টরি টার্নওভার এবং স্বল্পমেয়াদি দায়ের তুলনায় চলতি সম্পদের পরিমাণ দেখে।" },
-
-    // Category 3
     { id: 25, cat: "৩. প্রোডাকশন ও কস্টিং", q: "Direct Cost (প্রত্যক্ষ খরচ) এবং Indirect Cost (পরোক্ষ খরচ)-এর পার্থক্য উদাহরণসহ বলুন।", a: "সরাসরি পণ্য উৎপাদনে ব্যবহৃত খরচ Direct Cost (যেমন: রেশম সুতা, রঙ, তাঁতির মজুরি); আর কারখানার সাধারণ পরিচালন খরচ Indirect Cost (যেমন: কারখানার বিদ্যুৎ বিল, সুপারভাইজারের বেতন)।" },
     { id: 26, cat: "৩. প্রোডাকশন ও কস্টিং", q: "Prime Cost, Factory Overhead এবং Conversion Cost বলতে কী বোঝায়?", a: "Prime Cost = Direct Material + Direct Labor। কারখানার সকল পরোক্ষ খরচই Factory Overhead। আর কাঁচামালকে তৈরি পণ্যে রূপান্তরের খরচই Conversion Cost (Direct Labor + Factory Overhead)।" },
     { id: 27, cat: "৩. প্রোডাকশন ও কস্টিং", q: "Cost of Goods Manufactured (COGM) এবং Cost of Goods Sold (COGS) কীভাবে বের করা হয়?", a: "COGM = Opening WIP + Total Manufacturing Cost - Closing WIP এবং COGS = Opening Finished Goods + COGM - Closing Finished Goods।" },
@@ -270,8 +353,6 @@ const qaData = [
     { id: 34, cat: "৩. প্রোডাকশন ও কস্টিং", q: "Gross Profit এবং Net Profit-এর মধ্যে পার্থক্য কী?", a: "বিক্রয় আয় (Sales Revenue) থেকে Cost of Goods Sold (COGS) বাদ দিলে Gross Profit পাওয়া যায়। আর Gross Profit থেকে অফিস, প্রশাসনিক ও বিক্রয় খরচ বাদ দিলে Net Profit পাওয়া যায়।" },
     { id: 35, cat: "৩. প্রোডাকশন ও কস্টিং", q: "Inter-Process Transfer এবং Inter-Process Received বলতে কী বোঝেন? এক সেন্টার থেকে আরেক সেন্টারে কাঁচামাল বা তৈরি পণ্য গেলে ভাউচার কীভাবে হবে?", a: "এক সেন্টার অন্য সেন্টারে মাল পাঠালে তা Inter-Process Transfer (আয়/ক্রেডিট) এবং গ্রহণ করলে তা Inter-Process Received (খরচ/ডেবিট)। এটি ডেলিভারি চালান ও HO Breakup-এর মাধ্যমে সমন্বয় করে ভাউচার করা হয়।" },
     { id: 36, cat: "৩. প্রোডাকশন ও কস্টিং", q: "প্রোডাকশন রিপোর্টের (P. Report) সাথে অ্যাকাউন্টস রিপোর্টের মিল কেন থাকতে হয়?", a: "প্রোডাকশন রিপোর্টের উৎপাদিত পণ্যের সংখ্যার সাথে অ্যাকাউন্টসের স্টক ও উৎপাদন খরচের হিসাব না মিললে কাঁচামাল অপচয়, চুরি বা হিসাবের গরমিল ধরা পড়ে।" },
-
-    // Category 4
     { id: 37, cat: "৪. ইনভেন্টরি ও স্টক", q: "Raw Materials (কাঁচামাল), Work-in-Progress (WIP) এবং Finished Goods (তৈরি পণ্য)-এর পার্থক্য কী?", a: "অব্যবহৃত কাঁচামাল হলো Raw Materials (যেমন: কাঁচা সুতা); প্রক্রিয়াধীন আধা-তৈরি মাল হলো WIP (যেমন: তাঁতে বোনা অবস্থায় থাকা কাপড়); আর বিক্রয়ের উপযোগী পূর্ণাঙ্গ পণ্য হলো Finished Goods (যেমন: তৈরি শাড়ি)।" },
     { id: 38, cat: "৪. ইনভেন্টরি ও স্টক", q: "তাঁতে (Loom) সুতা দেওয়া হলে সেটি কোন স্টকে থাকবে—Raw Materials নাকি WIP?", a: "তাঁতে সুতা দেওয়া হলে তা উৎপাদন প্রক্রিয়ায় ঢুকে যায়, তাই সেটি Work-in-Progress (WIP) স্টকে থাকবে।" },
     { id: 39, cat: "৪. ইনভেন্টরি ও স্টক", q: "Periodic Inventory System এবং Perpetual Inventory System-এর মধ্যে পার্থক্য কী?", a: "নির্দিষ্ট সময় পরপর (যেমন: মাস শেষে) সরেজমিনে গণনা করে স্টক বের করা হলো Periodic System; আর প্রতিটি ক্রয়-বিক্রয় বা ইস্যুর সাথে সাথে সফটওয়্যার বা খাতায় স্টক আপডেট রাখা হলো Perpetual System।" },
@@ -284,8 +365,6 @@ const qaData = [
     { id: 46, cat: "৪. ইনভেন্টরি ও স্টক", q: "কাঁচামাল কেনার পর (Purchase) তা স্টক রেজিস্টারে তোলার প্রক্রিয়া কী?", a: "সাপ্লায়ারের চালান ও বিলের সাথে মালের পরিমাণ ও মান যাচাই করে GRN (Goods Received Note) তৈরি করতে হবে এবং স্টক রেজিস্টারের Receive কলামে পরিমাণ, দর ও মোট টাকা এন্ট্রি দিতে হবে।" },
     { id: 47, cat: "৪. ইনভেন্টরি ও স্টক", q: "একটি রেশম শাড়ি তৈরি হয়ে গোডাউনে আসার পর Finished Product স্টকে কীভাবে এন্ট্রি দেবেন?", a: "প্রোডাকশন রিপোর্ট অনুযায়ী WIP থেকে কাঁচামাল ও মজুরির খরচ সমন্বয় করে Finished Goods স্টকের Receive কলামে শাড়ির সংখ্যা ও মোট উৎপাদন খরচ অনুযায়ী দর এন্ট্রি দিতে হবে।" },
     { id: 48, cat: "৪. ইনভেন্টরি ও স্টক", q: "স্টক রিপোর্টে Opening Balance + Receive - Issue = Closing Balance সূত্রটি ব্যাখ্যা করুন।", a: "মাসের শুরুতে হাতে থাকা মজুদের (Opening) সাথে চলতি মাসে ক্রয় বা উৎপাদিত মাল (Receive) যোগ করে এবং বিক্রি বা উৎপাদনে ব্যবহৃত মাল (Issue) বাদ দিলে মাস শেষে হাতে থাকা প্রকৃত মজুদ (Closing) পাওয়া যায়।" },
-
-    // Category 5
     { id: 49, cat: "৫. ভ্যাট, ট্যাক্স ও কমপ্লায়েন্স", q: "VAT (মূল্য সংযোজন কর) এবং AIT/TDS (উৎসে আয়কর)-এর মধ্যে মৌলিক পার্থক্য কী?", a: "VAT হলো পণ্য বা সেবার মূল্যের ওপর আরোপিত পরোক্ষ কর যা ভোক্তা বহন করে; আর AIT/TDS হলো সাপ্লায়ার বা বিক্রেতার আয়ের ওপর বিল পরিশোধের সময় উৎসে কেটে রাখা অগ্রিম আয়কর।" },
     { id: 50, cat: "৫. ভ্যাট, ট্যাক্স ও কমপ্লায়েন্স", q: "VDS (VAT Deduction at Source) বা উৎসে ভ্যাট কর্তন বলতে কী বোঝায়?", a: "সরকার নির্ধারিত প্রতিষ্ঠান বা এনজিও সাপ্লায়ারকে বিল পরিশোধের সময় আইন অনুযায়ী নির্ধারিত হারে ভ্যাটের টাকা বিল থেকে কেটে রেখে সরকারি কোষাগারে জমা দেওয়াকে VDS বলে।" },
     { id: 51, cat: "৫. ভ্যাট, ট্যাক্স ও কমপ্লায়েন্স", q: "স্থানীয় বাজার থেকে পণ্য বা সেবা (যেমন: কুরিয়ার, প্রিন্টিং, হার্ডওয়্যার, রিপেয়ারিং) কিনলে ভ্যাট ও ট্যাক্স কীভাবে কাটবেন?", a: "সরকারি নির্ধারিত ভ্যাট ও আয়কর হার অনুযায়ী (যেমন: কুরিয়ারে ১৫% ভ্যাট ও ২% ট্যাক্স, সাধারণ সরবরাহে নির্ধারিত হারে) মূল বিল থেকে ভ্যাট ও ট্যাক্স কেটে বাকি নেট টাকা সাপ্লায়ারকে পরিশোধ করতে হবে।" },
@@ -298,8 +377,6 @@ const qaData = [
     { id: 58, cat: "৫. ভ্যাট, ট্যাক্স ও কমপ্লায়েন্স", q: "রাজস্ব স্ট্যাম্প (Revenue Stamp) কখন এবং কত টাকার বিলে লাগাতে হয়?", a: "সাধারণত ৫০০ টাকা বা তার বেশি নগদ পেমেন্টের ক্ষেত্রে ভাউচার বা মানি রিসিটের ওপর প্রাপকের স্বাক্ষরের নিচে ১০ টাকার রাজস্ব স্ট্যাম্প লাগাতে হয়।" },
     { id: 59, cat: "৫. ভ্যাট, ট্যাক্স ও কমপ্লায়েন্স", q: "বিল বা ভাউচারে কাটাকাটি বা ওভাররাইটিং থাকলে কী করণীয়?", a: "ভাউচারে কাটাকাটি বা ওভাররাইটিং গ্রহণযোগ্য নয়; ভুল হলে এক টানে কেটে সঠিক সংখ্যা লিখে অনুমোদিত ব্যক্তির স্বাক্ষর নিতে হবে অথবা নতুন ভাউচার তৈরি করতে হবে।" },
     { id: 60, cat: "৫. ভ্যাট, ট্যাক্স ও কমপ্লায়েন্স", q: "অডিটের (Audit) সময় ভ্যাট ও ট্যাক্স সংক্রান্ত কোন কোন ডকুমেন্ট সবচেয়ে বেশি দেখা হয়?", a: "Mushak 6.3 চালান, সরকারি কোষাগারে জমা দেওয়ার এ-চালান (Treasury Challan) কপি, মূল বিল-ভাউচার, কোটেশন এবং ভ্যাট-ট্যাক্স কর্তন রেজিস্টার।" },
-
-    // Category 6
     { id: 61, cat: "৬. ক্যাশ, ব্যাংক ও পেরোল", q: "Bank Reconciliation Statement (ব্যাংক সমন্বয় বিবরণী) কী এবং কেন প্রতি মাসে এটি তৈরি করতে হয়?", a: "ক্যাশবুকের ব্যাংক কলামের জের এবং ব্যাংক স্টেটমেন্টের জেরের মধ্যে পার্থক্যের কারণ বের করে উভয় জের মেলানোর বিবরণীকে Bank Reconciliation Statement বলে। ভুল বা জালিয়াতি ধরতে এটি প্রতি মাসে করতে হয়।" },
     { id: 62, cat: "৬. ক্যাশ, ব্যাংক ও পেরোল", q: "ব্যাংক স্টেটমেন্টের ব্যালেন্স এবং ক্যাশবুকের ব্যালেন্স না মেলার প্রধান ৫টি কারণ বলুন।", a: "(১) চেক ইস্যু কিন্তু ব্যাংকে উপস্থাপন না হওয়া, (২) চেক জমা কিন্তু ব্যাংক কর্তৃক ক্লিয়ার না হওয়া, (৩) ব্যাংক চার্জ বা আবগারি শুল্ক কাটা, (৪) ক্রেতা সরাসরি ব্যাংকে টাকা জমা দেওয়া, (৫) ক্যাশবুক বা ব্যাংকের লেখার ভুল।" },
     { id: 63, cat: "৬. ক্যাশ, ব্যাংক ও পেরোল", q: "Cheque Issued but not Presented for Payment এবং Cheque Deposited but not Cleared—এই দুটির প্রভাব কী?", a: "Cheque Issued but not Presented থাকলে ব্যাংক স্টেটমেন্টে ব্যালেন্স বেশি থাকে (সমন্বয় করতে বিয়োগ করতে হয়); আর Cheque Deposited but not Cleared থাকলে ব্যাংক স্টেটমেন্টে ব্যালেন্স কম থাকে (যোগ করতে হয়)।" },
@@ -310,8 +387,6 @@ const qaData = [
     { id: 68, cat: "৬. ক্যাশ, ব্যাংক ও পেরোল", q: "স্টাফদের Provident Fund (PF) হিসাব কীভাবে রাখা হয়? Own Contribution এবং Organization Contribution কী?", a: "কর্মীর বেতন থেকে প্রতি মাসে যে নির্দিষ্ট অংশ কাটা হয় তা Own Contribution এবং প্রতিষ্ঠান কর্মীর নামে সমপরিমাণ যে টাকা যোগ করে তা Organization Contribution। উভয় টাকা আলাদা PF লেজারে জমা রাখা হয়।" },
     { id: 69, cat: "৬. ক্যাশ, ব্যাংক ও পেরোল", q: "বেতন শিট (Salary Sheet) তৈরির সময় Gross Salary, Basic Salary, Deductions এবং Net Payable কীভাবে হিসাব করবেন?", a: "Gross Salary = Basic Salary + House Rent + Medical ও অন্যান্য ভাতা। Gross Salary থেকে PF, অগ্রিম বা আয়কর (Deductions) বাদ দিলে Net Payable পাওয়া যায়।" },
     { id: 70, cat: "৬. ক্যাশ, ব্যাংক ও পেরোল", q: "ক্যাশ নিরাপত্তার (Cash Security) জন্য অফিসে কী কী সতর্কতা অবলম্বন করা উচিত?", a: "ডাবল-লক সিন্দুক ব্যবহার করা, নির্ধারিত সীমার অতিরিক্ত ক্যাশ হাতে না রেখে দ্রুত ব্যাংকে জমা দেওয়া এবং ক্যাশ কাউন্টারে সীমিত প্রবেশাধিকার নিশ্চিত করা।" },
-
-    // Category 7
     { id: 71, cat: "৭. ফিক্সড অ্যাসেটস ও বাজেট", q: "Fixed Asset Register কী এবং এতে কী কী তথ্য থাকা জরুরি?", a: "প্রতিষ্ঠানের সকল স্থায়ী সম্পদের বিস্তারিত তথ্য সংবলিত খাতা বা ফাইল। এতে সম্পদের নাম, কোড নম্বর, ক্রয়ের তারিখ, মূল্য, অবস্থান, অবচয়ের হার, পুঞ্জীভূত অবচয় এবং বর্তমান লিখিত মূল্য (WDV) থাকা জরুরি।" },
     { id: 72, cat: "৭. ফিক্সড অ্যাসেটস ও বাজেট", q: "Straight-Line Method এবং Reducing Balance (Diminishing) Method-এ অবচয় (Depreciation) হিসাবের পার্থক্য কী?", a: "Straight-Line পদ্ধতিতে প্রতি বছর সম্পদের মূল ক্রয়মূল্যের ওপর সমান হারে অবচয় ধরা হয়; আর Reducing Balance পদ্ধতিতে প্রতি বছর কমতে থাকা লিখিত মূল্যের (Book Value) ওপর অবচয় ধরা হয়।" },
     { id: 73, cat: "৭. ফিক্সড অ্যাসেটস ও বাজেট", q: "জমি (Land)-এর ওপর কেন Depreciation ধরা হয় না?", a: "জমির নির্দিষ্ট কোনো আয়ুষ্কাল নেই (অসীম আয়ুষ্কাল) এবং ব্যবহারের ফলে জমি ক্ষয় হয় না বা এর মূল্য সাধারণত কমে না, তাই জমির ওপর অবচয় ধরা হয় না।" },
@@ -320,8 +395,6 @@ const qaData = [
     { id: 76, cat: "৭. ফিক্সড অ্যাসেটস ও বাজেট", q: "Budget vs Actual (BVSA) রিপোর্ট কেন তৈরি করা হয়?", a: "নির্ধারিত বাজেটের সাথে প্রকৃত আয় ও ব্যয়ের তুলনা করে খরচের বিচ্যুতি (Variance) চিহ্নিত করা এবং আর্থিক শৃঙ্খলা বজায় রাখার জন্য BVSA রিপোর্ট তৈরি করা হয়।" },
     { id: 77, cat: "৭. ফিক্সড অ্যাসেটস ও বাজেট", q: "Favorable Variance এবং Unfavorable (Adverse) Variance বলতে কী বোঝায়?", a: "বাজেটের চেয়ে প্রকৃত আয় বেশি হলে বা খরচ কম হলে তাকে Favorable Variance বলে; আর বাজেটের চেয়ে আয় কম হলে বা খরচ বেশি হলে তাকে Unfavorable Variance বলে।" },
     { id: 78, cat: "৭. ফিক্সড অ্যাসেটস ও বাজেট", q: "কোনো খাতে বাজেটের চেয়ে খরচ বেশি হয়ে গেলে (Over-budget) অ্যাকাউন্ট্যান্ট হিসেবে আপনার করণীয় কী?", a: "খরচ বেশি হওয়ার কারণ অনুসন্ধান করা, সেন্টার ইন-চার্জকে অবহিত করা এবং অনুমোদন ছাড়া অতিরিক্ত খরচ বন্ধ রাখা বা হেড অফিস থেকে বাজেট রিভিশনের ব্যবস্থা করা।" },
-
-    // Category 8
     { id: 79, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "এক্সেলে Relative Cell Reference (A1) এবং Absolute Cell Reference ($A$1)-এর মধ্যে পার্থক্য কী?", a: "A1 কপি করলে সারি ও কলাম অনুযায়ী সেল রেফারেন্স বদলে যায়; কিন্তু $A$1 লক করা থাকে, ফলে ফর্মুলা অন্য সেলে কপি করলেও রেফারেন্স স্থির থাকে।" },
     { id: 80, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "SUM, SUMIF এবং SUMIFS ফর্মুলাগুলোর পার্থক্য ও ব্যবহার বলুন।", a: "SUM নির্দিষ্ট রেঞ্জের সব সংখ্যা যোগ করে; SUMIF একটি মাত্র শর্ত সাপেক্ষে যোগ করে; এবং SUMIFS একাধিক শর্ত সাপেক্ষে যোগ করে।" },
     { id: 81, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "VLOOKUP এবং XLOOKUP কীভাবে কাজ করে? অ্যাকাউন্টিংয়ে এর একটি বাস্তব উদাহরণ দিন।", a: "একটি টেবিল থেকে নির্দিষ্ট কোড বা নাম খুঁজে পাশের কলামের তথ্য বের করতে এগুলো ব্যবহৃত হয়। যেমন: প্রোডাক্ট কোড বা অ্যাকাউন্টস কোড দিয়ে স্টক শীট থেকে পণ্যের নাম ও একক দর বের করা।" },
@@ -334,32 +407,138 @@ const qaData = [
     { id: 88, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "এক্সেল ফাইল যাতে কেউ ভুলবশত ডিলিট বা পরিবর্তন করতে না পারে, সেজন্য কী করবেন?", a: "Review ট্যাব থেকে Protect Sheet বা Protect Workbook অপশন ব্যবহার করে পাসওয়ার্ড দিয়ে ফর্মুলা ও শীট লক করে রাখা যায়।" },
     { id: 89, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "বাংলা টাইপিং (Bijoy / Avro) এবং এমএস ওয়ার্ডে অফিসিয়াল চিঠি বা রিপোর্ট লেখার দক্ষতা কেমন?", a: "বিজয় (Unicode ও ANSI) এবং অভ্র কিবোর্ডে নির্ভুলভাবে বাংলা ও ইংরেজি টাইপ করা এবং এমএস ওয়ার্ডে অফিসিয়াল চিঠি, মেমো ও রিপোর্ট ফরম্যাটিং করার পূর্ণ দক্ষতা রয়েছে।" },
     { id: 90, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "কোনো ERP বা অ্যাকাউন্টিং সফটওয়্যার (যেমন: Tally, QuickBooks, SAP বা কাস্টম ERP) সম্পর্কে ধারণা আছে কি না?", a: "অ্যাকাউন্টিং সফটওয়্যার বা ERP-তে চার্ট অফ অ্যাকাউন্টস (Chart of Accounts), ভাউচার পোস্টিং, লেজার চেকিং এবং রিপোর্ট জেনারেশনের মৌলিক কার্যপ্রণালী সম্পর্কে পরিষ্কার ধারণা রয়েছে।" },
-
-    // Category 9
     { id: 91, cat: "৯. ইন্টারনাল কন্ট্রোল ও অডিট", q: "Internal Control (অভ্যন্তরীণ নিয়ন্ত্রণ) কী? কেন এটি একটি প্রতিষ্ঠানের জন্য অপরিহার্য?", a: "প্রতিষ্ঠানের সম্পদ রক্ষা, হিসাবের নির্ভুলতা নিশ্চিত করা এবং ভুল বা জালিয়াতি রোধ করার জন্য গৃহীত নীতি ও পদ্ধতিই Internal Control। আর্থিক স্বচ্ছতার জন্য এটি অপরিহার্য।" },
     { id: 92, cat: "৯. ইন্টারনাল কন্ট্রোল ও অডিট", q: "Segregation of Duties (দায়িত্ব বণ্টন) বলতে কী বোঝায়?", a: "একটি লেনদেনের শুরু থেকে শেষ পর্যন্ত সব ক্ষমতা একজনের হাতে না রেখে একাধিক ব্যক্তির মধ্যে ভাগ করে দেওয়াকে Segregation of Duties বলে (যেমন: যিনি ক্রয় করবেন, তিনি ক্যাশ পেমেন্ট বা স্টক রিসিভ করবেন না)।" },
     { id: 93, cat: "৯. ইন্টারনাল কন্ট্রোল ও অডিট", q: "একটি পেমেন্ট ভাউচার পাস করার আগে ৩-ওয়ে ম্যাচিং (3-Way Matching: PO, GRN/Challan, Invoice) কীভাবে করবেন?", a: "পেমেন্ট করার আগে ক্রয় আদেশ (Purchase Order), মালামাল বুঝে পাওয়ার চালান (GRN) এবং সাপ্লায়ারের বিল (Invoice)—এই তিনটি ডকুমেন্টের পণ্যের পরিমাণ ও দর হুবহু মিলিয়ে দেখতে হবে।" },
     { id: 94, cat: "৯. ইন্টারনাল কন্ট্রোল ও অডিট", q: "ইন্টারনাল অডিট (Internal Audit) এবং এক্সটার্নাল অডিট (External Audit)-এর মধ্যে পার্থক্য কী?", a: "প্রতিষ্ঠানের নিজস্ব অডিট টিম দ্বারা নিয়মিত অভ্যন্তরীণ কার্যক্রম যাচাই হলো Internal Audit; আর বাইরের স্বাধীন চার্টার্ড অ্যাকাউন্ট্যান্ট ফার্ম দ্বারা বার্ষিক আর্থিক বিবরণী নিরীক্ষা হলো External Audit।" },
     { id: 95, cat: "৯. ইন্টারনাল কন্ট্রোল ও অডিট", q: "অডিটর যদি কোনো ভাউচার বা হিসাবে আপত্তি (Audit Query/Observation) তোলেন, তবে আপনি কীভাবে তা সমাধান করবেন?", a: "শান্তভাবে অডিটরের প্রশ্ন বুঝতে হবে, সংশ্লিষ্ট সমর্থক ডকুমেন্ট বা ভাউচার উপস্থাপন করতে হবে এবং প্রকৃতপক্ষে কোনো ভুল হয়ে থাকলে নিয়ম অনুযায়ী সমন্বয় দাখিলা দিয়ে লিখিত জবাব দিতে হবে।" },
-
-    // Category 10
     { id: 96, cat: "১০. পরিস্থিতিভিত্তিক ও নৈতিকতা", q: "সেন্টার ইন-চার্জ বা প্রোডাকশন অফিসার যদি নিয়মবহির্ভূত কোনো খরচের বিল পাস করতে চাপ দেন, আপনি কী করবেন?", a: "বিনয়ের সাথে প্রতিষ্ঠানের আর্থিক নীতিমালার কথা স্মরণ করিয়ে দিতে হবে, যথাযথ প্রমাণ ও অনুমোদন ছাড়া বিল পাস করা থেকে বিরত থাকতে হবে এবং প্রয়োজনে ঊর্ধ্বতন কর্তৃপক্ষকে অবহিত করতে হবে।" },
     { id: 97, cat: "১০. পরিস্থিতিভিত্তিক ও নৈতিকতা", q: "মাসের ক্লোজিংয়ের সময় (Month-end Closing) প্রচণ্ড কাজের চাপ থাকলে আপনি কীভাবে সময় ব্যবস্থাপনা (Time Management) করবেন?", a: "প্রতিদিনের লেনদেন ও ভাউচার সেদিনই এন্ট্রি দিয়ে কাজ কমিয়ে রাখতে হবে এবং ক্লোজিংয়ের সময় কাজের গুরুত্ব অনুযায়ী একটি চেকলিস্ট তৈরি করে ধাপে ধাপে কাজ শেষ করতে হবে।" },
     { id: 98, cat: "১০. পরিস্থিতিভিত্তিক ও নৈতিকতা", q: "আগের অ্যাকাউন্ট্যান্টের রেখে যাওয়া হিসাবে কোনো বড় ভুল খুঁজে পেলে আপনার পদক্ষেপ কী হবে?", a: "নিজে থেকে আগের কোনো ডাটা ডিলিট বা পরিবর্তন না করে প্রমাণসহ লিখিতভাবে সেন্টার ইন-চার্জকে জানাতে হবে এবং কর্তৃপক্ষের নির্দেশনা অনুযায়ী সঠিক অ্যাকাউন্টিং নিয়মে অ্যাডজাস্টমেন্ট এন্ট্রি দিতে হবে।" },
     { id: 99, cat: "১০. পরিস্থিতিভিত্তিক ও নৈতিকতা", q: "আপনি যেহেতু BBA/MBA করেছেন, ভবিষ্যতে অ্যাকাউন্টিং ও ফাইন্যান্স পেশায় নিজেকে কোথায় দেখতে চান?", a: "মাঠ পর্যায় থেকে শুরু করে বাস্তব কাজের অভিজ্ঞতা অর্জনের মাধ্যমে নিজেকে একজন দক্ষ, সৎ এবং নির্ভরযোগ্য ফাইন্যান্স ও অ্যাকাউন্টিং ম্যানেজার হিসেবে গড়ে তুলতে চাই।" },
-    { id: 100, cat: "১০. পরিস্থিতিভিত্তিক ও নৈতিকতা", q: "নাটোর SRC-তে কাজ করার জন্য আপনাকে অনেক সময় তাঁতি, শ্রমিক বা স্থানীয় সাপ্লায়ারদের সাথে কথা বলতে হবে—এই পরিবেশে কাজ করতে আপনি কতটা প্রস্তুত?", a: "উৎপাদনমুখী প্রতিষ্ঠানে অ্যাকাউন্টিং মানেই মাঠ পর্যায়ের কাজের সাথে হিসাব মেলানো; তাই তাঁতি, শ্রমিক ও স্থানীয় সাপ্লায়ারদের সাথে পেশাদার, ধৈর্যশীল ও সৌহার্দ্যপূর্ণ আচরণ করে কাজ করতে আমি সম্পূর্ণ প্রস্তুত।" }
+    { id: 100, cat: "১০. পরিস্থিতিভিত্তিক ও নৈতিকতা", q: "নাটোর SRC-তে কাজ করার জন্য আপনাকে অনেক সময় তাঁতি, শ্রমিক বা স্থানীয় সাপ্লায়ারদের সাথে কথা বলতে হবে—এই পরিবেশে কাজ করতে আপনি কতটা প্রস্তুত?", a: "উৎপাদনমুখী প্রতিষ্ঠানে অ্যাকাউন্টিং মানেই মাঠ পর্যায়ের কাজের সাথে হিসাব মেলানো; তাই তাঁতি, শ্রমিক ও স্থানীয় সাপ্লায়ারদের সাথে পেশাদার, ধৈর্যশীল ও সৌহার্দ্যপূর্ণ আচরণ করে কাজ করতে আমি সম্পূর্ণ প্রস্তুত।" },
+    { id: 101, cat: "১. বেসিক অ্যাকাউন্টিং", q: "Double Entry System (দু'তরফা দাখিলা পদ্ধতি) বলতে কী বোঝায়? এর মূল সুবিধা কী?", a: "প্রতিটি আর্থিক লেনদেনের দুটি পক্ষ থাকে—একটি ডেবিট (সুবিধা গ্রহণকারী) এবং অন্যটি ক্রেডিট (সুবিধা প্রদানকারী)। এর মূল সুবিধা হলো যেকোনো সময় হিসাবের গাণিতিক শুদ্ধতা যাচাই ও প্রকৃত লাভ-ক্ষতি নির্ণয় করা যায়।" },
+    { id: 102, cat: "১. বেসিক অ্যাকাউন্টিং", q: "Bookkeeping (হিসাবরক্ষণ) এবং Accounting (হিসাববিজ্ঞান)-এর মধ্যে পার্থক্য কী?", a: "Bookkeeping হলো প্রতিদিনের লেনদেন সঠিকভাবে লিপিবদ্ধ করার প্রাথমিক কাজ; আর Accounting হলো সেই তথ্য বিশ্লেষণ করে আর্থিক বিবরণী তৈরি ও সিদ্ধান্ত গ্রহণে সহায়তা করা।" },
+    { id: 103, cat: "১. বেসিক অ্যাকাউন্টিং", q: "Nominal Account, Real Account এবং Personal Account-এর একটি করে উদাহরণ দিন।", a: "Personal Account: সাপ্লায়ার হিসাব বা ব্যাংক হিসাব; Real Account: নগদ টাকা, মেশিন বা জমি; Nominal Account: বেতন খরচ, বিদ্যুৎ বিল বা বিক্রয় আয়।" },
+    { id: 104, cat: "১. বেসিক অ্যাকাউন্টিং", q: "Suspense Account (অনিশ্চিত হিসাব) কখন খোলা হয় এবং কীভাবে বন্ধ করা হয়?", a: "রেওয়ামিল (Trial Balance) না মিললে সাময়িকভাবে পার্থক্যের টাকা Suspense Account-এ লিখে রেওয়ামিল মেলানো হয়। পরে ভুলগুলো খুঁজে বের করে সংশোধনী দাখিলার মাধ্যমে এটি বন্ধ করা হয়।" },
+    { id: 105, cat: "১. বেসিক অ্যাকাউন্টিং", q: "Chart of Accounts (হিসাবের তালিকা) কী এবং কেন কোড নম্বর ব্যবহার করা হয়?", a: "প্রতিষ্ঠানের সব আয়, ব্যয়, সম্পদ ও দায়ের সুনির্দিষ্ট নাম ও কোড নম্বরের তালিকাকে Chart of Accounts বলে। কোড নম্বর (যেমন: 26200001) ব্যবহার করলে রিপোর্টিং ও সফটওয়্যারে ডাটা খোঁজা দ্রুত ও নির্ভুল হয়।" },
+    { id: 106, cat: "১. বেসিক অ্যাকাউন্টিং", q: "Debit Note এবং Credit Note কী? কখন এগুলো ইস্যু করা হয়?", a: "ক্রয়কৃত পণ্য ফেরত পাঠালে বা দামে ভুল হলে ক্রেতা বিক্রেতাকে Debit Note পাঠায়; আর বিক্রিত পণ্য ফেরত এলে বা ছাড় দিলে বিক্রেতা ক্রেতাকে Credit Note পাঠায়।" },
+    { id: 107, cat: "১. বেসিক অ্যাকাউন্টিং", q: "Conservatism Principle (রক্ষণশীলতার নীতি) বলতে কী বোঝায়?", a: "ভবিষ্যতের সম্ভাব্য লাভকে অগ্রিম আয় হিসেবে না ধরে সম্ভাব্য ক্ষতি বা দায়ের জন্য আগে থেকেই ব্যবস্থা (Provision) নেওয়ার নীতিকে Conservatism Principle বলে।" },
+    { id: 108, cat: "১. বেসিক অ্যাকাউন্টিং", q: "Materiality Concept (বস্তুনিষ্ঠতার ধারণা) কী?", a: "যে তথ্য বা টাকার অঙ্ক আর্থিক সিদ্ধান্তকে প্রভাবিত করতে পারে তা গুরুত্বপূর্ণ (Material), আর অতি সামান্য টাকার (যেমন: ৫ টাকার কলম) হিসাব আলাদা সম্পদ না দেখিয়ে সরাসরি খরচ হিসেবে দেখানোই Materiality Concept।" },
+    { id: 109, cat: "১. বেসিক অ্যাকাউন্টিং", q: "Accrued Income (বকেয়া আয়)-এর সমন্বয় দাখিলা (Adjusting Entry) কী হবে?", a: "Accrued Income / Accounts Receivable Dr. এবং সংশ্লিষ্ট Income Account Cr.।" },
+    { id: 110, cat: "১. বেসিক অ্যাকাউন্টিং", q: "Bad Debt (অনাদায়ী পাওনা) এবং Provision for Doubtful Debts-এর মধ্যে পার্থক্য কী?", a: "যে পাওনা টাকা আদায় হবে না বলে শতভাগ নিশ্চিত তা Bad Debt; আর ভবিষ্যতে আদায় না হওয়ার আশঙ্কা থেকে লাভের অংশ দিয়ে যে তহবিল রাখা হয় তা Provision for Doubtful Debts।" },
+    { id: 111, cat: "২. ফাইন্যান্সিয়াল স্টেটমেন্ট", q: "Trial Balance এবং Balance Sheet-এর মধ্যে মূল পার্থক্য কী?", a: "Trial Balance হলো খতিয়ানের জেরগুলোর একটি অভ্যন্তরীণ তালিকা যা গাণিতিক শুদ্ধতা যাচাই করে; আর Balance Sheet হলো নির্দিষ্ট তারিখে প্রতিষ্ঠানের সম্পদ, দায় ও মূলধনের চূড়ান্ত আর্থিক বিবরণী।" },
+    { id: 112, cat: "২. ফাইন্যান্সিয়াল স্টেটমেন্ট", q: "Non-Profit Organization বা উন্নয়নমূলক প্রোগ্রামে Capital Fund (মূলধন তহবিল) কীভাবে নির্ণয় করা হয়?", a: "প্রারম্ভিক মোট সম্পদ (Opening Total Assets) থেকে প্রারম্ভিক মোট দায় (Opening Total Liabilities) বাদ দিলে Opening Capital Fund পাওয়া যায়।" },
+    { id: 113, cat: "২. ফাইন্যান্সিয়াল স্টেটমেন্ট", q: "Current Ratio কী এবং আদর্শ অনুপাত কত ধরা হয়?", a: "চলতি সম্পদ ও চলতি দায়ের অনুপাতকে Current Ratio বলে (Current Assets ÷ Current Liabilities)। সাধারণত ২:১ অনুপাতকে আদর্শ ধরা হয়।" },
+    { id: 114, cat: "২. ফাইন্যান্সিয়াল স্টেটমেন্ট", q: "Quick Ratio (Acid-Test Ratio) কীভাবে বের করা হয়? এতে Inventory বাদ দেওয়া হয় কেন?", a: "সূত্র: (Current Assets - Inventory - Prepaid Expenses) ÷ Current Liabilities। ইনভেন্টরি দ্রুত নগদ টাকায় রূপান্তর করা কঠিন বলে তাৎক্ষণিক দায় পরিশোধের ক্ষমতা মাপতে এটি বাদ দেওয়া হয়।" },
+    { id: 115, cat: "২. ফাইন্যান্সিয়াল স্টেটমেন্ট", q: "Financial Notes বা Disclosures কেন আর্থিক বিবরণীর সাথে যুক্ত করা হয়?", a: "ব্যালেন্স শিট বা ইনকাম স্টেটমেন্টের সংক্ষিপ্ত সংখ্যাগুলোর বিস্তারিত ব্যাখ্যা, অ্যাকাউন্টিং নীতিমালা এবং ব্রেকআপ (যেমন: Fixed Asset Schedule, HO Breakup) পরিষ্কারভাবে বোঝানোর জন্য Notes যুক্ত করা হয়।" },
+    { id: 116, cat: "২. ফাইন্যান্সিয়াল স্টেটমেন্ট", q: "Contingent Liability (সম্ভাব্য দায়) কী? এটি ব্যালেন্স শিটে কীভাবে দেখানো হয়?", a: "ভবিষ্যতের কোনো অনিশ্চিত ঘটনার ওপর নির্ভরশীল দায়কে Contingent Liability বলে (যেমন: চলমান মামলা)। এটি মূল ব্যালেন্স শিটে যোগ না করে Footnote-এ উল্লেখ করা হয়।" },
+    { id: 117, cat: "২. ফাইন্যান্সিয়াল স্টেটমেন্ট", q: "Cumulative Figure এবং For the Month Figure-এর মধ্যে পার্থক্য কী?", a: "For the Month হলো শুধু চলতি এক মাসের আয় বা ব্যয়ের হিসাব; আর Cumulative হলো অর্থবছরের শুরু (যেমন: জুলাই) থেকে চলতি মাস পর্যন্ত মোট পুঞ্জীভূত হিসাব।" },
+    { id: 118, cat: "২. ফাইন্যান্সিয়াল স্টেটমেন্ট", q: "Inter-Unit বা Inter-Branch Reconciliation কেন গুরুত্বপূর্ণ?", a: "এক ব্রাঞ্চ থেকে অন্য ব্রাঞ্চে পাঠানো ফান্ড বা মালামালের হিসাব উভয় প্রান্তে সমান না হলে কেন্দ্রীয় (Consolidated) ব্যালেন্স শিট মিলবে না, তাই এটি অত্যন্ত গুরুত্বপূর্ণ।" },
+    { id: 119, cat: "৩. প্রোডাকশন ও কস্টিং", q: "Job Costing এবং Process Costing-এর মধ্যে পার্থক্য কী? রেশম শিল্পে কোনটি বেশি প্রযোজ্য?", a: "নির্দিষ্ট কাস্টমারের অর্ডার অনুযায়ী আলাদা খরচ হিসাব করা Job Costing; আর ধারাবাহিক কয়েকটি ধাপে (রিলিং → টুইস্টিং → উইভিং) উৎপাদিত পণ্যের খরচ হিসাব করা Process Costing। রেশম শিল্পে Process Costing বেশি প্রযোজ্য।" },
+    { id: 120, cat: "৩. প্রোডাকশন ও কস্টিং", q: "Cost Sheet (উৎপাদন ব্যয় বিবরণী) তৈরির প্রধান ধাপগুলো কী কী?", a: "Direct Material Consumed + Direct Labor = Prime Cost + Factory Overhead = Factory Cost + Opening WIP - Closing WIP = Cost of Production + Opening FG - Closing FG = COGS।" },
+    { id: 121, cat: "৩. প্রোডাকশন ও কস্টিং", q: "রিলিং (Reeling) প্রক্রিয়ায় ১০০ কেজি রেশম গুটি (Cocoon) থেকে ১২ কেজি রেশম সুতা পাওয়া গেল। রিকভারি বা ইল্ড (Yield %) কত?", a: "Yield % = (১২ ÷ ১০০) × ১০০ = ১২%। বাকি ৮৮% হলো পিউপা ও ওয়েস্টেজ।" },
+    { id: 122, cat: "৩. প্রোডাকশন ও কস্টিং", q: "By-Product (উপজাত) এবং Scrap (ছাঁট/বর্জ্য) বিক্রির টাকা অ্যাকাউন্টসে কীভাবে সমন্বয় করা হয়?", a: "উৎপাদনের সময় পাওয়া ওয়েস্ট সুতা বা নষ্ট গুটি বিক্রি করলে তা Others Income হিসেবে দেখানো হয় অথবা মূল উৎপাদন খরচ থেকে বাদ দিয়ে নিট কস্ট কমানো হয়।" },
+    { id: 123, cat: "৩. প্রোডাকশন ও কস্টিং", q: "Allocation এবং Apportionment of Overhead বলতে কী বোঝায়?", a: "কোনো পরোক্ষ খরচ সরাসরি একটি নির্দিষ্ট বিভাগে বণ্টন করা হলে তা Allocation; আর সাধারণ খরচ (যেমন: কারখানার ভাড়া বা বিদ্যুৎ) অনুপাত অনুযায়ী বিভিন্ন বিভাগে ভাগ করে দেওয়া হলে তা Apportionment।" },
+    { id: 124, cat: "৩. প্রোডাকশন ও কস্টিং", q: "Standard Costing এবং Variance Analysis কেন ব্যবহার করা হয়?", a: "পণ্য উৎপাদনের আগে একটি আদর্শ খরচ (Standard Cost) ঠিক করে প্রকৃত খরচের (Actual Cost) সাথে তুলনা করে অপচয় ও দক্ষতা যাচাই করার জন্য এটি ব্যবহৃত হয়।" },
+    { id: 125, cat: "৩. প্রোডাকশন ও কস্টিং", q: "Contribution Margin কী এবং কীভাবে বের করা হয়?", a: "বিক্রয়মূল্য থেকে পরিবর্তনশীল খরচ বাদ দিলে যা থাকে তা Contribution Margin (Sales - Variable Cost)। এটি দিয়ে প্রথমে Fixed Cost মেটানো হয় এবং বাকিটা মুনাফা হয়।" },
+    { id: 126, cat: "৩. প্রোডাকশন ও কস্টিং", q: "তাঁতিদের Piece-Rate Wage (পিস বা গজ অনুযায়ী মজুরি) হিসাব করার সময় কী কী যাচাই করতে হয়?", a: "তাঁতির জমা দেওয়া শাড়ির সংখ্যা, দৈর্ঘ্য-প্রস্থ, কোয়ালিটি চেক (QC Pass) রিপোর্ট এবং প্রদত্ত সুতার ওজনের সাথে তৈরি শাড়ির ওজনের সামঞ্জস্য যাচাই করতে হয়।" },
+    { id: 127, cat: "৪. ইনভেন্টরি ও স্টক", q: "Reorder Level, Minimum Stock Level এবং Maximum Stock Level বলতে কী বোঝায়?", a: "যে স্তরে স্টক নামলে নতুন করে অর্ডার দিতে হয় তা Reorder Level; জরুরি পরিস্থিতির জন্য সর্বনিম্ন মজুদ Minimum Level; এবং গুদামের ধারণক্ষমতা অনুযায়ী সর্বোচ্চ মজুদ Maximum Level।" },
+    { id: 128, cat: "৪. ইনভেন্টরি ও স্টক", q: "EOQ (Economic Order Quantity) কী?", a: "যে পরিমাণ কাঁচামাল একবারে অর্ডার করলে অর্ডারিং খরচ (Ordering Cost) এবং গুদামে রাখার খরচ (Carrying Cost) সবচেয়ে কম হয় তাকে EOQ বলে।" },
+    { id: 129, cat: "৪. ইনভেন্টরি ও স্টক", q: "ABC Analysis (ইনভেন্টরি কন্ট্রোল) কীভাবে কাজ করে?", a: "মূল্যের ভিত্তিতে পণ্যকে তিন ভাগে ভাগ করা হয়: 'A' (সবচেয়ে দামি ও কম সংখ্যক পণ্য—যেমন রেশম সুতা, যাতে কঠোর নজরদারি লাগে), 'B' (মাঝারি দামি) এবং 'C' (কম দামি ও বেশি সংখ্যক—যেমন পলি ব্যাগ বা সাবান)।" },
+    { id: 130, cat: "৪. ইনভেন্টরি ও স্টক", q: "Material Requisition Note (MRN) এবং Material Issue Note-এর কাজ কী?", a: "প্রোডাকশন বিভাগ স্টোর থেকে কাঁচামাল চাইলে MRN দেয় এবং স্টোর কিপার মাল হস্তান্তর করার সময় Issue Note-এ স্বাক্ষর নিয়ে স্টক কমান।" },
+    { id: 131, cat: "৪. ইনভেন্টরি ও স্টক", q: "Goods in Transit (পথে থাকা মাল)-এর হিসাব মাস শেষে কীভাবে রাখা হয়?", a: "মাস শেষে এক সেন্টার থেকে মাল পাঠানো হয়েছে কিন্তু অন্য সেন্টারে এখনো পৌঁছায়নি এমন মালকে চালান অনুযায়ী Goods in Transit বা Inter-Process Reconciliation-এ দেখানো হয়।" },
+    { id: 132, cat: "৪. ইনভেন্টরি ও স্টক", q: "NRV (Net Realizable Value) কী? ইনভেন্টরি ভ্যালুয়েশনে IAS-2 এর মূলনীতি কী?", a: "পণ্যটির সম্ভাব্য বিক্রয়মূল্য থেকে বিক্রয় সংক্রান্ত খরচ বাদ দিলে যা থাকে তা NRV। IAS-2 অনুযায়ী ইনভেন্টরি সবসময় Cost এবং NRV—এই দুটির মধ্যে যেটি কম (Lower of Cost or NRV) সেই মূল্যে দেখাতে হয়।" },
+    { id: 133, cat: "৪. ইনভেন্টরি ও স্টক", q: "Loom-wise WIP (তাঁতভিত্তিক চলমান কাজ) হিসাব রাখার সুবিধা কী?", a: "কোন তাঁতের কাছে কত কেজি তানা (Tana) ও ভরনা (Vorna) সুতা আছে এবং কয়টি শাড়ি বোনা বাকি আছে তা তাৎক্ষণিক ট্র্যাক করা যায়, ফলে সুতা চুরি বা অপচয় রোধ হয়।" },
+    { id: 134, cat: "৪. ইনভেন্টরি ও স্টক", q: "Stock Turnover Ratio কীভাবে নির্ণয় করা হয়? এটি বেশি হওয়া ভালো না কম?", a: "সূত্র: Cost of Goods Sold (COGS) ÷ Average Inventory। এটি বেশি হওয়া ভালো, কারণ এর অর্থ পণ্য দ্রুত বিক্রি বা ব্যবহৃত হচ্ছে এবং গুদামে মাল পড়ে থাকছে না।" },
+    { id: 135, cat: "৫. ভ্যাট, ট্যাক্স ও কমপ্লায়েন্স", q: "TIN (Taxpayer's Identification Number) এবং BIN (Business Identification Number)-এর মধ্যে পার্থক্য কী?", a: "আয়কর (Income Tax) প্রদানের জন্য ১২ ডিজিটের নিবন্ধন নম্বর হলো TIN; আর ভ্যাট (VAT) নিবন্ধনের জন্য ১৩ ডিজিটের নম্বর হলো BIN।" },
+    { id: 136, cat: "৫. ভ্যাট, ট্যাক্স ও কমপ্লায়েন্স", q: "Advance Income Tax (AIT) এবং Tax Deducted at Source (TDS)-এর মধ্যে সম্পর্ক কী?", a: "উভয়ই অগ্রিম আয়কর। সাপ্লায়ারের বিল পরিশোধের সময় ক্রেতা যে কর কেটে রাখে তাকে TDS বলে, যা ওই সাপ্লায়ারের জন্য AIT হিসেবে গণ্য হয়।" },
+    { id: 137, cat: "৫. ভ্যাট, ট্যাক্স ও কমপ্লায়েন্স", q: "সরকারি কোষাগারে উৎসে কর্তনকৃত ভ্যাট (VDS) ও ট্যাক্স (TDS) জমা দেওয়ার সময়সীমা কত দিন?", a: "আয়কর আইন অনুযায়ী সাধারণত কর্তনের মাসের পরবর্তী ২ সপ্তাহের মধ্যে (অর্থাৎ পরের মাসের ১৫ তারিখের মধ্যে) এবং ভ্যাট আইনে নির্ধারিত সময়ের মধ্যে ট্রেজারি চালানে জমা দিতে হয়।" },
+    { id: 138, cat: "৫. ভ্যাট, ট্যাক্স ও কমপ্লায়েন্স", q: "কুরিয়ার সার্ভিস বিল ১,০০০ টাকা হলে এবং ১৫% ভ্যাট ও ২% ট্যাক্স প্রযোজ্য হলে (ভ্যাট অতিরিক্ত হলে) সাপ্লায়ারকে নিট কত টাকা দেবেন?", a: "মূল বিল ১,০০০ টাকা। ভ্যাট = ১৫০ টাকা (সরকারি কোষাগারে যাবে), ট্যাক্স = ২০ টাকা (সরকারি কোষাগারে যাবে)। সাপ্লায়ারকে নিট পেমেন্ট = ১,০০০ - ২০ = ৯৮০ টাকা (যদি ভ্যাট বিলসহ ১,১৫০ টাকা হয়)।" },
+    { id: 139, cat: "৫. ভ্যাট, ট্যাক্স ও কমপ্লায়েন্স", q: "Zero-Rated VAT (শূন্য হার বিশিষ্ট ভ্যাট) এবং VAT Exempted-এর মধ্যে পার্থক্য কী?", a: "রপ্তানিমুখী পণ্যে ০% ভ্যাট প্রযোজ্য হলে বিক্রেতা কাঁচামালে দেওয়া ভ্যাট ফেরত (Rebate) পান (Zero-Rated); কিন্তু VAT Exempted পণ্যে ভ্যাট নেই এবং কোনো রিবেটও পাওয়া যায় না।" },
+    { id: 140, cat: "৫. ভ্যাট, ট্যাক্স ও কমপ্লায়েন্স", q: "Input VAT (উপকরণ কর) এবং Output VAT (উৎপাদ কর) বলতে কী বোঝায়?", a: "কাঁচামাল কেনার সময় যে ভ্যাট দেওয়া হয় তা Input VAT; আর তৈরি পণ্য বিক্রির সময় ক্রেতার কাছ থেকে যে ভ্যাট নেওয়া হয় তা Output VAT।" },
+    { id: 141, cat: "৫. ভ্যাট, ট্যাক্স ও কমপ্লায়েন্স", q: "অফিস ভাড়া বা বাড়ি ভাড়া পরিশোধের সময় ভ্যাট ও ট্যাক্সের নিয়ম কী?", a: "বাণিজ্যিক অফিস ভাড়ার ওপর নির্ধারিত হারে (সাধারণত ১৫%) ভ্যাট এবং নির্দিষ্ট সীমার বেশি ভাড়া হলে ৫% উৎসে আয়কর (TDS) কেটে সরকারি কোষাগারে জমা দিতে হয়।" },
+    { id: 142, cat: "৫. ভ্যাট, ট্যাক্স ও কমপ্লায়েন্স", q: "PSR (Proof of Submission of Return) কী? কখন এটি সাপ্লায়ারের কাছ থেকে নিতে হয়?", a: "আয়কর রিটার্ন দাখিলের প্রমাণপত্র হলো PSR। নির্দিষ্ট ধরনের বড় সরবরাহ বা সেবার বিল পরিশোধের সময় সাপ্লায়ারের কাছ থেকে PSR না নিলে অতিরিক্ত হারে ট্যাক্স কাটতে হয়।" },
+    { id: 143, cat: "৬. ক্যাশ, ব্যাংক ও পেরোল", q: "Stale Cheque (বাসি চেক) কী? বাংলাদেশে একটি চেকের মেয়াদ কত দিন থাকে?", a: "ইস্যু করার তারিখ থেকে নির্ধারিত সময় পার হয়ে গেলে ব্যাংক যে চেক গ্রহণ করে না তাকে Stale Cheque বলে। বাংলাদেশে চেকের মেয়াদ ইস্যুর তারিখ থেকে ৬ মাস (১৮০ দিন)।" },
+    { id: 144, cat: "৬. ক্যাশ, ব্যাংক ও পেরোল", q: "Post-Dated Cheque (PDC) এবং Ante-Dated Cheque বলতে কী বোঝায়?", a: "চেকের গায়ে ভবিষ্যতের তারিখ লেখা থাকলে তা Post-Dated Cheque (ওই তারিখের আগে ব্যাংক টাকা দেবে না); আর বর্তমান তারিখের আগের তারিখ লেখা থাকলে তা Ante-Dated Cheque।" },
+    { id: 145, cat: "৬. ক্যাশ, ব্যাংক ও পেরোল", q: "Bounced / Dishonored Cheque (চেক প্রত্যাখ্যাত হওয়া) কী কী কারণে হতে পারে?", a: "অ্যাকাউন্টে পর্যাপ্ত টাকা না থাকলে, স্বাক্ষর না মিললে, কথায় ও অঙ্কে টাকার গরমিল থাকলে, কাটাকাটি থাকলে বা চেকের মেয়াদ উত্তীর্ণ হলে চেক ডিজঅনার হয়।" },
+    { id: 146, cat: "৬. ক্যাশ, ব্যাংক ও পেরোল", q: "RTGS, BEFTN এবং NPSB-এর মধ্যে পার্থক্য কী?", a: "BEFTN-এ সাধারণত পরের কার্যদিবসে টাকা জমা হয় (কোনো সীমা নেই); RTGS-এ ১ লাখ বা তার বেশি টাকা তাৎক্ষণিক (Real-time) ব্যাংকিং সময়ে ট্রান্সফার হয়; আর NPSB-তে কার্ড বা অ্যাপের মাধ্যমে ২৪/৭ তাৎক্ষণিক ফান্ড ট্রান্সফার হয়।" },
+    { id: 147, cat: "৬. ক্যাশ, ব্যাংক ও পেরোল", q: "Bank Overdraft (ব্যাংক জমাতিরিক্ত উত্তোলন) কী? এটি ব্যালেন্স শিটের কোথায় বসে?", a: "ব্যাংকে জমা টাকার চেয়ে চুক্তি অনুযায়ী অতিরিক্ত টাকা উত্তোলনের সুবিধা হলো Bank Overdraft। এটি ব্যালেন্স শিটের Current Liabilities পাশে বসে।" },
+    { id: 148, cat: "৬. ক্যাশ, ব্যাংক ও পেরোল", q: "Petty Cash-এর ভাউচার ও মূল ক্যাশবুকের মধ্যে সমন্বয় কীভাবে করবেন?", a: "পেটি ক্যাশিয়ার খরচের ভাউচারগুলো সারসংক্ষেপ (Summary) করে মূল অ্যাকাউন্ট্যান্টের কাছে জমা দিলে মূল ক্যাশবুক থেকে খাতওয়ারি খরচ ডেবিট করে সমপরিমাণ নগদ টাকা পেটি ক্যাশে রিইম্বার্স করা হয়।" },
+    { id: 149, cat: "৬. ক্যাশ, ব্যাংক ও পেরোল", q: "কর্মচারীদের Gratuity এবং Provident Fund-এর মধ্যে পার্থক্য কী?", a: "Provident Fund-এ কর্মী ও প্রতিষ্ঠান উভয়ই প্রতি মাসে টাকা জমা দেয়; কিন্তু Gratuity সম্পূর্ণভাবে প্রতিষ্ঠান বহন করে যা নির্দিষ্ট বছর চাকরি করার পর অবসর বা চাকরি ছাড়ার সময় এককালীন দেওয়া হয়।" },
+    { id: 150, cat: "৬. ক্যাশ, ব্যাংক ও পেরোল", q: "Overtime (ওভারটাইম) এবং Festival Bonus হিসাব করার সময় কী কী ডকুমেন্ট যাচাই করতে হয়?", a: "ওভারটাইমের জন্য বায়োমেট্রিক বা হাজিরা খাতা (Attendance Sheet) ও সুপারভাইজারের অনুমোদন এবং বোনাসের জন্য চাকরির মেয়াদ ও এইচআর নীতিমালা যাচাই করতে হয়।" },
+    { id: 151, cat: "৭. ফিক্সড অ্যাসেটস ও বাজেট", q: "Salvage Value (ভগ্নাবশেষ মূল্য) এবং Useful Life (কার্যকরী আয়ুষ্কাল) বলতে কী বোঝায়?", a: "সম্পদটির ব্যবহার অনুপযোগী হওয়ার পর বিক্রি করলে যে আনুমানিক মূল্য পাওয়া যায় তা Salvage Value; এবং সম্পদটি যত বছর ধরে প্রতিষ্ঠানকে সেবা দেবে তা Useful Life।" },
+    { id: 152, cat: "৭. ফিক্সড অ্যাসেটস ও বাজেট", q: "Depreciation (অবচয়) এবং Amortization-এর মধ্যে পার্থক্য কী?", a: "দৃশ্যমান স্থায়ী সম্পদের (যেমন: মেশিন, বিল্ডিং) মূল্য হ্রাসকে Depreciation বলে; আর অদৃশ্যমান সম্পদের (যেমন: সফটওয়্যার লাইসেন্স, পেটেন্ট) মূল্য বণ্টনকে Amortization বলে।" },
+    { id: 153, cat: "৭. ফিক্সড অ্যাসেটস ও বাজেট", q: "একটি মেশিন ১,০০,০০০ টাকায় কেনা হলো, ভগ্নাবশেষ মূল্য ১০,০০০ টাকা এবং আয়ুষ্কাল ৯ বছর। Straight-Line পদ্ধতিতে বার্ষিক অবচয় কত?", a: "বার্ষিক অবচয় = (১,০০,০০০ - ১০,০০০) ÷ ৯ = ৯০,০০০ ÷ ৯ = ১০,০০০ টাকা।" },
+    { id: 154, cat: "৭. ফিক্সড অ্যাসেটস ও বাজেট", q: "Asset Tagging (সম্পদে কোড নম্বর লাগানো) কেন করা হয়?", a: "অফিসের প্রতিটি চেয়ার, টেবিল, কম্পিউটার ও মেশিনে ইউনিক কোড নম্বর লাগালে ফিজিক্যাল ভেরিফিকেশন করা সহজ হয় এবং সম্পদ চুরি বা হারিয়ে যাওয়া রোধ হয়।" },
+    { id: 155, cat: "৭. ফিক্সড অ্যাসেটস ও বাজেট", q: "Zero-Based Budgeting (ZBB) এবং Incremental Budgeting-এর মধ্যে পার্থক্য কী?", a: "আগের বছরের বাজেটের সাথে কিছু শতাংশ যোগ-বিয়োগ করে নতুন বাজেট করা Incremental Budgeting; আর শূন্য থেকে শুরু করে প্রতিটি খরচের যৌক্তিকতা প্রমাণ করে নতুন বাজেট তৈরি করা Zero-Based Budgeting।" },
+    { id: 156, cat: "৭. ফিক্সড অ্যাসেটস ও বাজেট", q: "Capital Budget এবং Operating Budget-এর মধ্যে পার্থক্য কী?", a: "স্থায়ী সম্পদ ক্রয় বা বড় অবকাঠামো নির্মাণের পরিকল্পনা হলো Capital Budget; আর দৈনন্দিন উৎপাদন, বেতন, কাঁচামাল ও পরিচালন আয়ের পরিকল্পনা হলো Operating Budget।" },
+    { id: 157, cat: "৭. ফিক্সড অ্যাসেটস ও বাজেট", q: "Achievement % (লক্ষ্যমাত্রা অর্জনের হার) কীভাবে বের করা হয়? (যেমন: বাজেট ২,০০,০০০ টাকা, প্রকৃত অর্জন ১,৫০,০০০ টাকা)।", a: "Achievement % = (Actual ÷ Budget) × ১০০ = (১,৫০,০০০ ÷ ২,০০,০০০) × ১০০ = ৭৫%।" },
+    { id: 158, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "COUNT, COUNTA এবং COUNTIF ফর্মুলাগুলোর মধ্যে পার্থক্য কী?", a: "COUNT শুধু সংখ্যাযুক্ত সেল গোনে; COUNTA ফাঁকা নয় এমন সব সেল (সংখ্যা ও টেক্সট) গোনে; এবং COUNTIF নির্দিষ্ট শর্ত পূরণকারী সেল গোনে।" },
+    { id: 159, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "INDEX এবং MATCH ফর্মুলা একসাথে কেন ব্যবহার করা হয়?", a: "VLOOKUP শুধু ডানদিকের কলাম থেকে ডাটা আনতে পারে, কিন্তু INDEX-MATCH বাম বা ডান যেকোনো দিকের কলাম থেকে দ্রুত ও নির্ভুলভাবে ডাটা খুঁজে আনতে পারে।" },
+    { id: 160, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "Freeze Panes কেন ব্যবহার করা হয়?", a: "বড় এক্সেল শিটে নিচে বা ডানে স্ক্রল করার সময় উপরের হেডার সারি (Header Row) বা বামের কলাম স্থির রাখার জন্য Freeze Panes ব্যবহৃত হয়।" },
+    { id: 161, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "Remove Duplicates এবং Text to Columns টুল দুটি কী কাজে লাগে?", a: "একই ডাটা একাধিকবার এন্ট্রি হলে তা মুছতে Remove Duplicates এবং এক সেলের লেখা (যেমন: তারিখ বা নাম) একাধিক কলামে ভাগ করতে Text to Columns ব্যবহৃত হয়।" },
+    { id: 162, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "CONCATENATE বা TEXTJOIN ফর্মুলার কাজ কী?", a: "একাধিক সেলের লেখা বা কোড নম্বর একত্রিত করে একটি সেলে দেখানোর জন্য (যেমন: ব্রাঞ্চ কোড ও অ্যাকাউন্ট কোড জোড়া লাগাতে) এটি ব্যবহৃত হয়।" },
+    { id: 163, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "এক্সেলে Paste Special (Values / Formulas / Transpose) কখন ব্যবহার করবেন?", a: "ফর্মুলা বাদ দিয়ে শুধু ফলাফল কপি করতে Paste Values এবং সারি (Row)-কে কলামে (Column) রূপান্তর করতে Transpose ব্যবহার করা হয়।" },
+    { id: 164, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "Circular Reference Warning কখন দেখায় এবং কীভাবে সমাধান করবেন?", a: "কোনো ফর্মুলা যখন প্রত্যক্ষ বা পরোক্ষভাবে নিজের সেলকেই রেফার করে (যেমন: A10 সেলে =SUM(A1:A10) লেখা), তখন Circular Reference দেখায়। রেঞ্জ ঠিক করে দিলে এটি সমাধান হয়।" },
+    { id: 165, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "SUBTOTAL ফর্মুলা কেন সাধারণ SUM ফর্মুলার চেয়ে ফিল্টার করা ডাটায় বেশি কার্যকর?", a: "ডাটা ফিল্টার (Filter) করলে সাধারণ SUM লুকানো সেলগুলোও যোগ করে, কিন্তু SUBTOTAL(9, range) শুধু দৃশ্যমান (Filtered) সেলগুলোর যোগফল দেখায়।" },
+    { id: 166, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "প্রিন্ট দেওয়ার সময় বড় এক্সেল শিট এক পৃষ্ঠায় (Fit to 1 Page Wide) আনার উপায় কী?", a: "Page Layout ট্যাব থেকে Orientation (Landscape) সিলেক্ট করে Scale to Fit অপশনে Width: 1 page সেট করে দিতে হয়।" },
+    { id: 167, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "অ্যাকাউন্টস ফাইলের ব্যাকআপ (Data Backup) রাখার নিরাপদ পদ্ধতি কী?", a: "প্রতিদিন কাজ শেষে তারিখ অনুযায়ী ফাইল সেভ করা এবং লোকাল ড্রাইভের পাশাপাশি অনুমোদিত ক্লাউড ড্রাইভ (Google Drive / OneDrive) বা পেনড্রাইভে ব্যাকআপ রাখা।" },
+    { id: 168, cat: "৯. ইন্টারনাল কন্ট্রোল ও অডিট", q: "Audit Trail (অডিট ট্রেইল) বলতে কী বোঝায়?", a: "প্রতিটি লেনদেনের শুরু থেকে চূড়ান্ত রিপোর্ট পর্যন্ত ধাপে ধাপে প্রমাণপত্র (রিকুইজিশন, বিল, চালান, ভাউচার, ব্যাংক স্টেটমেন্ট) সংরক্ষণের ধারাবাহিক রেকর্ডকে Audit Trail বলে।" },
+    { id: 169, cat: "৯. ইন্টারনাল কন্ট্রোল ও অডিট", q: "Vouching (ভাউচিং) এবং Verification (যাচাইকরণ)-এর মধ্যে পার্থক্য কী?", a: "সমর্থক ডকুমেন্ট দেখে লেনদেনের সত্যতা ও বৈধতা পরীক্ষা করা Vouching; আর ব্যালেন্স শিটে দেখানো সম্পদ ও দায়ের বাস্তব অস্তিত্ব ও মালিকানা পরীক্ষা করা Verification।" },
+    { id: 170, cat: "৯. ইন্টারনাল কন্ট্রোল ও অডিট", q: "Pre-Audit (বিল পরিশোধের আগে নিরীক্ষা) কেন জরুরি?", a: "টাকা পরিশোধ করার আগেই বিল, কোটেশন, ভ্যাট-ট্যাক্স ও অনুমোদন যাচাই করে নিলে ভুল পেমেন্ট বা অতিরিক্ত টাকা চলে যাওয়ার ঝুঁকি থাকে না।" },
+    { id: 171, cat: "৯. ইন্টারনাল কন্ট্রোল ও অডিট", q: "Quotation বা Comparative Statement (CS) কখন তৈরি করতে হয়?", a: "নির্দিষ্ট সীমার বেশি টাকার পণ্য বা সেবা কেনার ক্ষেত্রে অন্তত ৩টি সাপ্লায়ারের কাছ থেকে দরপত্র (Quotation) নিয়ে তুলনামূলক বিবরণী (CS) তৈরি করে সবচেয়ে সাশ্রয়ী ও মানসম্মত সাপ্লায়ার নির্বাচন করতে হয়।" },
+    { id: 172, cat: "৯. ইন্টারনাল কন্ট্রোল ও অডিট", q: "Spot Purchase (নগদে সরাসরি বাজার থেকে ক্রয়)-এর ক্ষেত্রে কী কী সতর্কতা নেওয়া উচিত?", a: "জরুরি প্রয়োজনে অনুমোদন সাপেক্ষে বাজার থেকে কিনলে ক্যাশ মেমো বা পাকা রসিদ নেওয়া, বাজারদরের সাথে মিলিয়ে দেখা এবং স্টোর কিপারের রিসিভ স্বাক্ষর নেওয়া জরুরি।" },
+    { id: 173, cat: "৯. ইন্টারনাল কন্ট্রোল ও অডিট", q: "Donor Audit বা Program Audit-এ কোন বিষয়গুলোর ওপর সবচেয়ে বেশি জোর দেওয়া হয়?", a: "বাজেট অনুযায়ী খরচ হয়েছে কি না, অনুমোদিত খাতে ব্যয় হয়েছে কি না, ক্রয় নীতিমালা (Procurement Policy) মানা হয়েছে কি না এবং ভাউচারে সব স্বাক্ষর পূর্ণ আছে কি না।" },
+    { id: 174, cat: "৯. ইন্টারনাল কন্ট্রোল ও অডিট", q: "Whistleblowing Policy বা অনিয়ম রিপোর্টিং সম্পর্কে আপনার ধারণা কী?", a: "প্রতিষ্ঠানে কোনো আর্থিক জালিয়াতি, দুর্নীতি বা নীতিমালা ভঙ্গের ঘটনা নজরে এলে নির্ভয়ে নির্ধারিত গোপনীয় চ্যানেলের মাধ্যমে ঊর্ধ্বতন কর্তৃপক্ষকে জানানোর নীতি।" },
+    { id: 175, cat: "১০. পরিস্থিতিভিত্তিক ও নৈতিকতা", q: "সাপ্লায়ার বিল জমা দেওয়ার পর বারবার তাগাদা দিচ্ছেন, কিন্তু প্রোডাকশন বিভাগ এখনো মালামালের কোয়ালিটি রিপোর্ট (QC) দেয়নি। আপনি কী করবেন?", a: "সাপ্লায়ারকে বিনয়ের সাথে বর্তমান অবস্থা জানাবো এবং প্রোডাকশন বিভাগের সাথে যোগাযোগ করে দ্রুত QC রিপোর্ট সংগ্রহ করে নিয়ম অনুযায়ী পেমেন্ট প্রসেস করবো; QC ছাড়া পেমেন্ট করবো না।" },
+    { id: 176, cat: "১০. পরিস্থিতিভিত্তিক ও নৈতিকতা", q: "কোনো শ্রমিক বা তাঁতি অগ্রিম মজুরি (Advance) চাইলে অ্যাকাউন্ট্যান্ট হিসেবে আপনার প্রক্রিয়া কী হবে?", a: "তার চলমান কাজের অগ্রগতি ও প্রাপ্য মজুরি যাচাই করে প্রোডাকশন অফিসার ও সেন্টার ইন-চার্জের লিখিত অনুমোদন সাপেক্ষে অগ্রিম প্রদান করবো এবং পরবর্তী মজুরি বিল থেকে তা সমন্বয় করবো।" },
+    { id: 177, cat: "১০. পরিস্থিতিভিত্তিক ও নৈতিকতা", q: "বিদ্যুৎ চলে গেলে বা ইন্টারনেট না থাকলে জরুরি হিসাবের কাজ কীভাবে চালিয়ে নেবেন?", a: "ল্যাপটপের ব্যাটারি ব্যাকআপ ও মোবাইল হটস্পট ব্যবহার করে জরুরি রিপোর্ট পাঠাবো এবং অফলাইন অবস্থায় ভাউচার ও ম্যানুয়াল লেজার আপডেট রেখে সংযোগ ফিরলেই এক্সেল/সিস্টেমে এন্ট্রি দেবো।" },
+    { id: 178, cat: "১০. পরিস্থিতিভিত্তিক ও নৈতিকতা", q: "আপনার অধীনে বা সাথে কাজ করা স্টোর কিপার এক্সেলে দুর্বল হলে আপনি কীভাবে তাকে সাহায্য করবেন?", a: "ধৈর্য ধরে তাকে স্টক এন্ট্রির সহজ ফরম্যাট বুঝিয়ে দেবো এবং প্রতিদিন দিনশেষে তার স্টক শীট ক্রস-চেক করে ভুলগুলো শুধরে দেবো।" },
+    { id: 179, cat: "১০. পরিস্থিতিভিত্তিক ও নৈতিকতা", q: "সাপ্লায়ার যদি বিল দ্রুত পাস করানোর বিনিময়ে আপনাকে ব্যক্তিগত উপহার বা কমিশন অফার করেন, আপনি কী করবেন?", a: "স্পষ্টভাবে ও বিনয়ের সাথে তা প্রত্যাখ্যান করবো, কারণ এটি পেশাগত নৈতিকতা ও প্রতিষ্ঠানের আচরণবিধির সম্পূর্ণ পরিপন্থী।" },
+    { id: 180, cat: "১০. পরিস্থিতিভিত্তিক ও নৈতিকতা", q: "একই দিনে ব্যাংক জমা, বেতন প্রদান এবং হেড অফিসে মাসিক রিপোর্ট পাঠানোর কাজ থাকলে কোনটি আগে করবেন?", a: "সকালে প্রথমে ব্যাংকিং সময়ের মধ্যে ক্যাশ জমা ও চেক ক্লিয়ারেন্সের কাজ শেষ করবো, এরপর বেতন বিতরণ সম্পন্ন করবো এবং নির্ধারিত ডেডলাইনের আগেই মাসিক রিপোর্ট যাচাই করে পাঠাবো।" },
+    { id: 181, cat: "১. বেসিক অ্যাকাউন্টিং", q: "Suspense Account এবং Sundry Creditors-এর মধ্যে পার্থক্য কী?", a: "অনিশ্চিত বা অশনাক্তকৃত হিসাব সাময়িকভাবে রাখার খাত হলো Suspense Account; আর বাকিতে পণ্য বা সেবা সরবরাহকারী পাওনাদারদের সমষ্টি হলো Sundry Creditors।" },
+    { id: 182, cat: "১. বেসিক অ্যাকাউন্টিং", q: "Bank Reconciliation করার পর Adjusted Cash Book Balance কেন বের করা হয়?", a: "ব্যাংক চার্জ, সুদ বা সরাসরি জমার মতো যেসব লেনদেন ব্যাংকে হয়েছে কিন্তু ক্যাশবুকে লেখা হয়নি, সেগুলো ক্যাশবুকে এন্ট্রি দিয়ে প্রকৃত নগদ ও ব্যাংক স্থিতি জানার জন্য Adjusted Cash Book তৈরি হয়।" },
+    { id: 183, cat: "২. ফাইন্যান্সিয়াল স্টেটমেন্ট", q: "Gross Margin % এবং Net Profit Margin %-এর সূত্র কী?", a: "Gross Margin % = (Gross Profit ÷ Net Sales) × ১০০ এবং Net Profit Margin % = (Net Profit ÷ Net Sales) × ১০০।" },
+    { id: 184, cat: "২. ফাইন্যান্সিয়াল স্টেটমেন্ট", q: "Debt-to-Equity Ratio কী নির্দেশ করে?", a: "প্রতিষ্ঠানের নিজস্ব মূলধনের তুলনায় বহিরাগত ঋণের অনুপাত (Total Liabilities ÷ Total Equity) নির্দেশ করে, যা আর্থিক ঝুঁকি পরিমাপে ব্যবহৃত হয়।" },
+    { id: 185, cat: "৩. প্রোডাকশন ও কস্টিং", q: "Idle Time (অলস সময়) কী? কারখানায় এর খরচ কীভাবে দেখানো হয়?", a: "মেশিন নষ্ট বা কাঁচামালের অভাবে শ্রমিক কাজ ছাড়া বসে থাকলে তাকে Idle Time বলে। স্বাভাবিক অলস সময়ের মজুরি Factory Overhead-এ এবং অস্বাভাবিক অলস সময়ের মজুরি Costing P&L-এ নেওয়া হয়।" },
+    { id: 186, cat: "৩. প্রোডাকশন ও কস্টিং", q: "Batch Costing কোথায় ব্যবহৃত হয়?", a: "যেখানে নির্দিষ্ট সংখ্যক পণ্য একসাথে একটি লট বা ব্যাচে উৎপাদিত হয় (যেমন: নির্দিষ্ট ডিজাইনের ৫০টি রেশম শাড়ি বা ১০০ কেজি সুতা ডাইং), সেখানে Batch Costing ব্যবহৃত হয়।" },
+    { id: 187, cat: "৪. ইনভেন্টরি ও স্টক", q: "Consignment Stock বা আড়ং (Aarong)-এ পাঠানো পণ্যের মালিকানা ও হিসাব কীভাবে রাখা হয়?", a: "বিক্রির উদ্দেশ্যে আড়ং বা অন্য ডিসপ্লে সেন্টারে পণ্য পাঠালে চূড়ান্ত বিক্রি না হওয়া পর্যন্ত তা প্রতিষ্ঠানের নিজস্ব স্টক বা Inter-Process Transfer নীতিমালা অনুযায়ী ট্র্যাক করা হয়।" },
+    { id: 188, cat: "৪. ইনভেন্টরি ও স্টক", q: "Dead Stock ও Obsolete Stock-এর মধ্যে সূক্ষ্ম পার্থক্য কী?", a: "দীর্ঘদিন অবিক্রিত পড়ে থাকা মাল Dead Stock; আর ফ্যাশন বা প্রযুক্তির পরিবর্তনের কারণে যা আর ব্যবহারযোগ্য নয় তা Obsolete Stock।" },
+    { id: 189, cat: "৫. ভ্যাট, ট্যাক্স ও কমপ্লায়েন্স", q: "Withholding Tax Return বা উৎসে কর কর্তনের রিটার্ন কখন দাখিল করতে হয়?", a: "আয়কর আইন অনুযায়ী নির্ধারিত সময় পরপর (মাসিক বা ষান্মাসিক ভিত্তিতে) উৎসে কর্তনকৃত আয়কর ও চালানের বিবরণীসহ কর অফিসে রিটার্ন দাখিল করতে হয়।" },
+    { id: 190, cat: "৫. ভ্যাট, ট্যাক্স ও কমপ্লায়েন্স", q: "Mushak 6.1 (ক্রয় হিসাব পুস্তক) এবং Mushak 6.2 (বিক্রয় হিসাব পুস্তক) কী?", a: "ভ্যাট আইন অনুযায়ী কাঁচামাল ক্রয়ের হিসাব রাখার রেজিস্টার হলো Mushak 6.1 এবং উৎপাদিত পণ্য বিক্রির হিসাব রাখার রেজিস্টার হলো Mushak 6.2।" },
+    { id: 191, cat: "৬. ক্যাশ, ব্যাংক ও পেরোল", q: "Cheque Register কেন মেইনটেইন করা হয়?", a: "কত নম্বর চেক, কোন তারিখে, কাকে এবং কত টাকার জন্য ইস্যু করা হয়েছে তার ধারাবাহিক রেকর্ড রাখতে Cheque Register মেইনটেইন করা হয়।" },
+    { id: 192, cat: "৬. ক্যাশ, ব্যাংক ও পেরোল", q: "Pay Order (পে-অর্ডার) এবং Demand Draft (DD)-এর মধ্যে পার্থক্য কী?", a: "Pay Order সাধারণত একই শহরের বা ক্লিয়ারিং হাউসের মধ্যে পরিশোধের জন্য ব্যবহৃত হয়; আর Demand Draft দেশের যেকোনো শহরের শাখায় পরিশোধের জন্য ব্যবহৃত হয়।" },
+    { id: 193, cat: "৭. ফিক্সড অ্যাসেটস ও বাজেট", q: "Impairment of Asset (সম্পদের মূল্যহ্রাস/ক্ষতি) বলতে কী বোঝায়?", a: "বাজারমূল্য কমে যাওয়া বা মেশিন ক্ষতিগ্রস্ত হওয়ার কারণে সম্পদের আদায়যোগ্য মূল্য (Recoverable Amount) তার বইমূল্যের (Carrying Amount) চেয়ে কমে গেলে তাকে Impairment বলে।" },
+    { id: 194, cat: "৭. ফিক্সড অ্যাসেটস ও বাজেট", q: "Rolling Forecast (চলমান পূর্বাভাস) কী?", a: "বছরের শুরুতে একবার বাজেট করে বসে না থেকে প্রতি মাস বা প্রান্তিক শেষে প্রকৃত অবস্থার ভিত্তিতে পরবর্তী ১২ মাসের বাজেট হালনাগাদ করার পদ্ধতি।" },
+    { id: 195, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "ROUND, ROUNDUP এবং ROUNDDOWN ফর্মুলার কাজ কী?", a: "ভ্যাট বা গড় দর হিসাবের পর দশমিক সংখ্যাকে পূর্ণসংখ্যায় বা নির্দিষ্ট দশমিক স্থান পর্যন্ত আনতে এগুলো ব্যবহৃত হয় (যেমন: =ROUND(8695.65, 0) দিলে 8696 হবে)।" },
+    { id: 196, cat: "৮. এমএস এক্সেল ও কম্পিউটার", q: "Data Sorting এবং Advanced Filter-এর সুবিধা কী?", a: "তারিখ, টাকার অঙ্ক বা কোড অনুযায়ী ডাটা ছোট থেকে বড় সাজাতে Sorting এবং একাধিক জটিল শর্তে নির্দিষ্ট ডাটা আলাদা করতে Advanced Filter ব্যবহৃত হয়।" },
+    { id: 197, cat: "৯. ইন্টারনাল কন্ট্রোল ও অডিট", q: "Physical Verification Committee কীভাবে গঠন ও কাজ করে?", a: "অ্যাকাউন্টস ও স্টোরের বাইরের নিরপেক্ষ কর্মকর্তাদের নিয়ে গঠিত কমিটি বছর বা মাস শেষে ক্যাশ ও ইনভেন্টরি সরেজমিনে গুনে প্রত্যয়নপত্র দেয়।" },
+    { id: 198, cat: "৯. ইন্টারনাল কন্ট্রোল ও অডিট", q: "Voucher Filing (ভাউচার ফাইলিং) কীভাবে করলে অডিটের সময় দ্রুত খুঁজে পাওয়া যায়?", a: "তারিখ ও ভাউচার নম্বর অনুযায়ী ক্রমানুসারে ক্যাশ ভাউচার, ব্যাংক ভাউচার ও জার্নাল ভাউচার আলাদা বক্স ফাইলে ইনডেক্সসহ সংরক্ষণ করলে দ্রুত খুঁজে পাওয়া যায়।" },
+    { id: 199, cat: "১০. পরিস্থিতিভিত্তিক ও নৈতিকতা", q: "BBA/MBA-এর তাত্ত্বিক জ্ঞানের সাথে মাঠ পর্যায়ের বাস্তব অ্যাকাউন্টিংয়ের প্রধান পার্থক্য কী বলে আপনি মনে করেন?", a: "বইয়ে সব লেনদেন গোছানো থাকে, কিন্তু বাস্তবে অসম্পূর্ণ বিল, স্থানীয় সাপ্লায়ার, ভ্যাট-ট্যাক্স ও স্টকের গরমিল সামলে নিয়ম মেনে নির্ভুল রিপোর্ট তৈরি করাই আসল চ্যালেঞ্জ।" },
+    { id: 200, cat: "১০. পরিস্থিতিভিত্তিক ও নৈতিকতা", q: "কেন আমরা নাটোর SRC-এর অ্যাকাউন্ট্যান্ট পদের জন্য আপনাকেই নির্বাচন করব?", a: "আমার অ্যাকাউন্টিংয়ের মজবুত একাডেমিক ভিত্তি, এক্সেল ও ভ্যাট-ট্যাক্সের ব্যবহারিক জ্ঞান, সততা এবং নাটোরের স্থানীয় পরিবেশে উৎপাদন বিভাগের সাথে সমন্বয় করে কাজ করার মানসিকতা আমাকে এই পদের জন্য যোগ্য করে তুলেছে।" }
+
 ];
 
 let currentCategory = "সবগুলো";
+let filterMode = "all"; // 'all' or 'saved'
 let answersHidden = false;
+let bookmarks = JSON.parse(localStorage.getItem("natore_src_bookmarks") || "[]");
 
 const categoryContainer = document.getElementById("categoryContainer");
 const qaList = document.getElementById("qaList");
 const searchInput = document.getElementById("searchInput");
-const toggleAllBtn = document.getElementById("toggleAllBtn");
+const clearSearchBtn = document.getElementById("clearSearchBtn");
 const statsText = document.getElementById("statsText");
+const modeBadge = document.getElementById("modeBadge");
+const savedLabel = document.getElementById("savedLabel");
+const vivaLabel = document.getElementById("vivaLabel");
 
 const categories = ["সবগুলো", ...new Set(qaData.map(item => item.cat))];
+
+function updateSavedCount() {
+    savedLabel.textContent = `Saved (${bookmarks.length})`;
+}
 
 function renderCategories() {
     categoryContainer.innerHTML = "";
@@ -378,22 +557,39 @@ function renderCategories() {
 
 function renderQA() {
     const query = searchInput.value.trim().toLowerCase();
+    clearSearchBtn.style.display = query ? "block" : "none";
+
     const filtered = qaData.filter(item => {
         const matchesCat = currentCategory === "সবগুলো" || item.cat === currentCategory;
-        const matchesSearch = item.q.toLowerCase().includes(query) || item.a.toLowerCase().includes(query) || String(item.id) === query;
-        return matchesCat && matchesSearch;
+        const matchesSaved = filterMode === "all" || bookmarks.includes(item.id);
+        const matchesSearch = !query ||
+            item.q.toLowerCase().includes(query) ||
+            item.a.toLowerCase().includes(query) ||
+            String(item.id) === query;
+        return matchesCat && matchesSaved && matchesSearch;
     });
 
-    statsText.textContent = `মোট ${filtered.length}টি প্রশ্ন দেখানো হচ্ছে`;
+    statsText.textContent = `দেখানো হচ্ছে: ${filtered.length}টি প্রশ্ন`;
     qaList.innerHTML = "";
 
+    if (filtered.length === 0) {
+        qaList.innerHTML = `<div class="qa-card" style="text-align:center; color:#64748b; padding:2rem;">কোনো প্রশ্ন পাওয়া যায়নি। ফিল্টার বা সার্চ পরিবর্তন করে দেখুন।</div>`;
+        return;
+    }
+
     filtered.forEach(item => {
+        const isSaved = bookmarks.includes(item.id);
         const card = document.createElement("div");
-        card.className = "qa-card";
+        card.className = "qa-card" + (isSaved ? " bookmarked" : "");
         card.innerHTML = `
-            <span class="qa-meta">${item.cat}</span>
+            <div class="card-top">
+                <span class="qa-meta">${item.cat}</span>
+                <button class="bookmark-btn ${isSaved ? 'active' : ''}" onclick="toggleBookmark(${item.id})" title="Save Question">
+                    ${isSaved ? '★' : '☆'}
+                </button>
+            </div>
             <div class="question" onclick="toggleSingleAnswer(${item.id})">
-                <div><span class="q-label">Question: ${item.id}</span> — ${item.q}</div>
+                <span class="q-label">Question: ${item.id}</span> — ${item.q}
             </div>
             <div class="answer ${answersHidden ? 'hidden' : ''}" id="ans-${item.id}">
                 <span class="a-label">Answer: ${item.id}</span> — ${item.a}
@@ -408,14 +604,117 @@ function toggleSingleAnswer(id) {
     if (el) el.classList.toggle("hidden");
 }
 
-toggleAllBtn.onclick = () => {
+function toggleBookmark(id) {
+    if (bookmarks.includes(id)) {
+        bookmarks = bookmarks.filter(b => b !== id);
+    } else {
+        bookmarks.push(id);
+    }
+    localStorage.setItem("natore_src_bookmarks", JSON.stringify(bookmarks));
+    updateSavedCount();
+    renderQA();
+}
+
+function setFilterMode(mode) {
+    filterMode = mode;
+    document.getElementById("navAll").classList.toggle("active", mode === "all");
+    document.getElementById("navSaved").classList.toggle("active", mode === "saved");
+    renderQA();
+}
+
+function toggleVivaMode() {
     answersHidden = !answersHidden;
-    toggleAllBtn.textContent = answersHidden ? "সব উত্তর দেখান" : "সব উত্তর লুকান (Viva Mode)";
+    document.getElementById("navViva").classList.toggle("active", answersHidden);
+    vivaLabel.textContent = answersHidden ? "Show Ans" : "Viva Mode";
+    modeBadge.textContent = answersHidden ? "Viva Mode (Tap Q)" : "Answer: Visible";
+    renderQA();
+}
+
+clearSearchBtn.onclick = () => {
+    searchInput.value = "";
     renderQA();
 };
 
 searchInput.addEventListener("input", renderQA);
 
+// Single-File PWA Setup (Dynamic Manifest + Inline Service Worker via Blob)
+(function setupPWA() {
+    const iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="100" fill="#ec008c"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="180" fill="#ffffff">SRC</text></svg>`;
+    const iconUrl = "data:image/svg+xml;base64," + btoa(iconSvg);
+
+    const manifest = {
+        name: "Natore SRC - Accountant Q&A Bank",
+        short_name: "Natore SRC QA",
+        description: "200 Accountant Interview Questions & Answers for BRAC Sericulture Natore SRC",
+        start_url: "./",
+        display: "standalone",
+        background_color: "#f1f5f9",
+        theme_color: "#ec008c",
+        icons: [
+            { src: iconUrl, sizes: "192x192", type: "image/svg+xml" },
+            { src: iconUrl, sizes: "512x512", type: "image/svg+xml" }
+        ]
+    };
+
+    const manifestBlob = new Blob([JSON.stringify(manifest)], { type: "application/manifest+json" });
+    const manifestLink = document.createElement("link");
+    manifestLink.rel = "manifest";
+    manifestLink.href = URL.createObjectURL(manifestBlob);
+    document.head.appendChild(manifestLink);
+
+    const appleIcon = document.createElement("link");
+    appleIcon.rel = "apple-touch-icon";
+    appleIcon.href = iconUrl;
+    document.head.appendChild(appleIcon);
+
+    if ("serviceWorker" in navigator) {
+        const swCode = `
+            const CACHE_NAME = 'natore-src-qa-v1';
+            self.addEventListener('install', (e) => {
+                self.skipWaiting();
+                e.waitUntil(
+                    caches.open(CACHE_NAME).then((cache) => cache.addAll(['./', location.href]))
+                );
+            });
+            self.addEventListener('activate', (e) => {
+                e.waitUntil(clients.claim());
+            });
+            self.addEventListener('fetch', (e) => {
+                e.respondWith(
+                    caches.match(e.request).then((cached) => {
+                        return cached || fetch(e.request).then((res) => {
+                            const copy = res.clone();
+                            caches.open(CACHE_NAME).then((cache) => cache.put(e.request, copy));
+                            return res;
+                        }).catch(() => cached);
+                    })
+                );
+            });
+        `;
+        const swBlob = new Blob([swCode], { type: "application/javascript" });
+        navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(() => {});
+    }
+
+    let deferredPrompt;
+    const installBanner = document.getElementById("installBanner");
+    const installBtn = document.getElementById("installBtn");
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBanner.classList.add("show");
+    });
+
+    installBtn.addEventListener("click", async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+        installBanner.classList.remove("show");
+    });
+})();
+
+updateSavedCount();
 renderCategories();
 renderQA();
 </script>
